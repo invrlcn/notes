@@ -8,7 +8,7 @@ Vue (读音 /vjuː/，类似于 **view**) 是一套用于构建用户界面的**
 
 什么是渐进式框架呢？表示我们可以在项目中一点点来引入和使用Vue，而不一定需要全部使用Vue来开发整个项目
 
-![](https://raw.githubusercontent.com/invrlcn/notes/main/imgs/vue3/CDN.png)
+![](../imgs/vue3/%E8%AE%A4%E8%AF%86vue.png)
 
 在2020年的9月19日，万众期待的Vue3终于发布了正式版，命名为**“One Piece”**
 

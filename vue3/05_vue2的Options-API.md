@@ -1,4 +1,4 @@
-vue2的OPtions-API
+# vue2的OPtions-API
 
 ## 一、**复杂data的处理方式**
 
