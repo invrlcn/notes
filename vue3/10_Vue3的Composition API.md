@@ -117,6 +117,14 @@ setup() {
 
 ![](../imgs/vue3/%E6%89%A7%E8%A1%8Csetup%E5%87%BD%E6%95%B0%E4%B9%8B%E5%89%8D%E5%B7%B2%E7%BB%8F%E5%88%9B%E5%BB%BA%E5%87%BA%E5%AE%9E%E4%BE%8B.png)
 
+### 3.4 **setup中使用ref**
+
+在setup中如何使用ref或者元素或者组件？
+
+**需要定义一个ref对象，绑定到元素或者组件的ref属性上**
+
+![](../imgs/vue3/setup%E4%B8%AD%E4%BD%BF%E7%94%A8ref.png)
+
 ## 四、**响应式特性**
 
 ### 4.1 **Reactive API**
@@ -316,3 +324,206 @@ const name = toRef(state, 'name')
 ![](../imgs/vue3/customRef%E6%A1%88%E4%BE%8B%EF%BC%881%EF%BC%89.png)
 
 ![](../imgs/vue3/customRef%E6%A1%88%E4%BE%8B%EF%BC%882%EF%BC%89.png)
+
+## 五、**computed和watch**
+
+### 5.1 **computed**
+
+computed：当我们的某些属性是**依赖其他状态时**，我们可以**使用计算属性来处理** 
+
+在前面的Options API中，我们是使用**computed选项**来完成的
+
+在Composition API中，我们可以在 **setup 函数中使用 computed 方法来编写一个计算属性**
+
+如何使用computed呢？ 
+
+方式一：**接收一个getter函数，并为 getter 函数返回的值，返回一个不变的 ref 对象**
+
+方式二：**接收一个具有 get 和 set 的对象，返回一个可变的（可读写）ref 对象**
+
+![](../imgs/vue3/computed%EF%BC%881%EF%BC%89.png)
+
+![](../imgs/vue3/computed%EF%BC%882%EF%BC%89.png)
+
+### 5.2 **侦听数据的变化**
+
+在前面的Options API中，我们可以通过**watch选项来侦听data或者props的数据变化**，当数据变化时执行某一些操作。 
+
+在Composition API中，我们可以使用**watchEffect和watch来完成响应式数据的侦听**
+
+**watchEffect用于自动收集响应式数据的依赖** 
+
+**watch需要手动指定侦听的数据源**
+
+### 5.3 **watchEffect**
+
+当侦听到某些响应式数据变化时，我们希望执行某些操作，这个时候可以使用 watchEffect
+
+我们来看一个案例： 
+
+首先，**watchEffect传入的函数会被立即执行一次**，并且在执行的过程中会收集依赖； 其次，**只有收集的依赖发生变化时，watchEffect传入的函数才会再次执行**
+
+```javascript
+const name = ref('lcn')
+const age = ref(18)
+
+watchEffect(() => {
+  console.log('watchEffect执行', name.value, age.value)
+})
+```
+
+### 5.4 **watchEffect的停止侦听**
+
+如果在发生某些情况下，我们希望停止侦听，这个时候我们可以**获取watchEffect的返回值函数，调用该函数即可**。 
+
+比如在上面的案例中，我们age达到20的时候就停止侦听：
+
+```javascript
+const stopWatch =  watchEffect(() => {
+  console.log('watchEffect执行', name.value, age.value)
+})
+const changeAge = () =>{
+  age.value++
+  if(age.value >  20) {
+       stopWatch()
+  }
+}
+```
+
+### 5.5 **watchEffect清除副作用**
+
+什么是清除副作用呢？ 
+
+比如在开发中我们需要在侦听函数中执行网络请求，但是在网络请求还没有达到的时候，我们停止了侦听器，或者侦听器侦听函数被再次执行了。 
+
+那么上一次的网络请求应该被取消掉，这个时候我们就可以清除上一次的副作用； 在我们给watchEffect传入的函数被回调时，其实可以获取到一个参数：**onInvalidate** 
+
+当**副作用即将重新执行** 或者 **侦听器被停止** 时会执行该函数传入的回调函数； 我们可以在传入的回调函数中，执行一些清楚工作
+
+```javascript
+const stopWatch =  watchEffect((onInvalidate) => {
+  console.log('watchEffect执行', name.value, age.value)
+  const timer = setTimeout(() => {
+       console.log(2s后执行)
+  }, 2000)
+  onInvalidate(() => {
+       clearTimeout(timer)
+  })
+})
+```
+
+### 5.6 **watchEffect的执行时机**
+
+默认情况下，组件的更新会在副作用函数执行之前： 
+
+如果我们希望在副作用函数中获取到元素，是否可行呢？
+
+```javascript
+export default {
+  setup() {
+     const titleRef = ref(null)
+     const counterRef = 0
+     
+     watchEffect(() => {
+       console.log(titleRef.value)
+     })
+                      
+     return {
+       	titleRef,
+        counterRef
+     }
+  }
+}
+
+// 打印结果
+null
+<h2></h2>
+```
+
+我们会发现打印结果打印了两次： 
+
+这是因为setup函数在执行时就会立即执行传入的副作用函数，这个时候DOM并没有挂载，所以打印为null； 而当DOM挂载时，会给title的ref对象赋值新的值，副作用函数会再次执行，打印出来对应的元素
+
+### 5.7 **调整watchEffect的执行时机**
+
+如果我们希望在第一次的时候就打印出来对应的元素呢？ 
+
+这个时候我们需要改变副作用函数的执行时机； 它的默认值是**pre**，它会在**元素 挂载 或者 更新 之前执行**； 所以我们会先打印出来一个空的，当依赖的title发生改变时，就会再次执行一次，打印出元素； 我们可以设置副作用函数的执行时机：
+
+```javascript
+let h2ElContent = null
+
+watchEffect(() => {
+  h2ElContent = titleRef.value && titleRef.value.textContent
+  console.log(h2ElContent, counter.value)
+}, {
+  flush: 'post'
+})
+```
+
+**flush 选项还接受 sync，这将强制效果始终同步触发。然而，这是低效的，应该很少需要**
+
+### 5.8 **Watch的使用**
+
+watch的API完全等同于组件watch选项的Property： 
+
+watch需要侦听特定的数据源，并在回调函数中执行副作用
+
+默认情况下它是**惰性**的，**只有当被侦听的源发生变化时才会执行回调**，与watchEffect的比较，watch允许我们： 
+
+**懒执行副作用（第一次不会直接执行）**
+
+更具体的说明当哪些**状态发生变化时，触发侦听器的执行**
+
+**访问侦听状态变化前后的值**
+
+### 5.9 **侦听单个数据源**
+
+watch侦听函数的数据源有两种类型： 
+
+**一个getter函数：但是该getter函数必须引用可响应式的对象（比如reactive或者ref）**
+
+**直接写入一个可响应式的对象，reactive或者ref（比较常用的是ref）**
+
+![](../imgs/vue3/watch%E4%BE%A6%E5%90%AC%E5%8D%95%E4%B8%AA%E6%95%B0%E6%8D%AE%E6%BA%90%EF%BC%881%EF%BC%89.png)
+
+![](../imgs/vue3/watch%E4%BE%A6%E5%90%AC%E5%8D%95%E4%B8%AA%E6%95%B0%E6%8D%AE%E6%BA%90%EF%BC%882%EF%BC%89.png)
+
+### 5.10 **侦听多个数据源**
+
+侦听器还可以使用数组同时侦听多个源：
+
+```javascript
+const name = ref('bob')
+const age = ref(18)
+
+const changeName = () => {
+  name.value = 'mary'
+}
+
+watch([name, age], (newValue, oldValue) => {
+  console.log(newValue, oldValue)
+})
+```
+
+### 5.11 **侦听响应式对象**
+
+如果我们希望侦听一个**数组或者对象**，那么**可以使用一个getter函数**，并且**对可响应对象进行解构**：
+
+```javascript
+const names = reactive(['bob', 'lcn', 'mary'])
+
+watch([...names], (newValue, oldValue) => {
+  console.log(newValue, oldValue)
+})
+const changeName = () => {
+  names.push('tom')
+}
+```
+
+### 5.12 **watch的选项**
+
+如果我们希望**侦听一个深层的侦听，那么依然需要设置 deep 为true**，也可以传入 **immediate 立即执行**
+
+![](../imgs/vue3/watch%E9%80%89%E9%A1%B9.png)
+
