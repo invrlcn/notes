@@ -14,9 +14,9 @@
 
 编写一个obj的对象，有this和没有this的区别：
 
-![](E:\notes\imgs\javascript\无this.png)
+![](../imgs/javascript/%E6%97%A0this.png)
 
-![](E:\notes\imgs\javascript\有this.png)
+![](../imgs/javascript/%E6%9C%89this.png)
 
 ## 二、this的指向
 
@@ -24,7 +24,7 @@
 
 this在全局下的指向在浏览器中的测试就是指向window
 
-![](E:\notes\imgs\javascript\this指向window.png)
+![](../imgs/javascript/this%E6%8C%87%E5%90%91window.png)
 
 但是，开发中很少直接在全局作用于下去使用this，通常都是在**函数中使用**
 
@@ -208,7 +208,7 @@ box.onclick = function() {
 
 forEach中this问题
 
-![](E:\notes\imgs\javascript\forEach中的this.png)
+![](../imgs/javascript/forEach%E4%B8%AD%E7%9A%84this.png)
 
 ### 2.7 规则四：new绑定
 
