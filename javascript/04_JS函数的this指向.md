@@ -38,14 +38,14 @@ this也是其中的一条记录
 
 定义一个函数，我们采用三种不同的方式对它进行调用，它产生了三种不同的结果
 
-![](E:\notes\imgs\javascript\不同方式下的this调用.png)
+![](../imgs\javascript\不同方式下的this调用.png)
 
 由此我们可以得出几个结论：
 
 1. 函数在调用时，JavaScript会默认给this绑定一个值
-2. this的绑定和定义的位置（编写的位置）没有关系
-3. this的绑定和调用的位置和方式有关系
-4. this是在运行时被调用的
+2. this的绑定和**定义的位置（编写的位置）没有关系**
+3. this的绑定和**调用的位置和方式**有关系
+4. this是在**运行时被调用的**
 
 ### 2.3  规则一：默认绑定
 
@@ -202,7 +202,7 @@ var obj = {name: 'lcn'}
 
 var box = document.querySelector('.box')
 box.onclick = function() {
-    console.log(this === box)
+    console.log(this === box)  // box元素
 }
 ```
 
@@ -218,7 +218,7 @@ JavaScript中的函数可以当做一个类的构造函数来使用，也就是�
 
 1. 创建一个全新的对象
 2. 这个对象会被执行prototype链接（这个对象内部的[[prototype]]属性会被赋值为该构造函数的prototype属性）
-3. 这个新对象会被绑定到函数调用的this上（this的绑定在这一步完成）
+3. 构造函数的this会指向创建出来的新对象（this的绑定在这一步完成）
 4. 如果函数没有其他返回对象，表达式会返回这个新对象
 
 ```javascript
@@ -227,7 +227,6 @@ function Person(name) {
     this.name = name  // Person {name: 'lcn'}
 }
 var p = new Person('lcn')
-console.log(p)
 ```
 
 ## 三、规则优先级
@@ -392,7 +391,7 @@ person1.foo3.call(person2)()  // window
 person1.foo3().call(person2)  // person2
 
 person1.foo4()()  // person1
-person1.fooo4.call(person2)()  // person2
+person1.foo4.call(person2)()  // person2
 person1.foo4().call(person2)   // person1
 ```
 
@@ -403,12 +402,12 @@ var name = 'window'
 function Person(name) {
     this.name = name
     this.foo1 = function() {
-        consoel.log(this.name)
+        console.log(this.name)
     }
     this.foo2 = () => console.log(this.name)
     this.foo3 = function() {
         return function() {
-            consoele.log(this.name)
+            console.log(this.name)
         }
     }
     this.foo4 = function() {
@@ -432,25 +431,25 @@ person1.foo3().call(person2)  // person2
 
 person1.foo4()()  // person1
 person1.foo4.call(person2)()  // person2
-person1.foo4().call(person1)  // person1
+person1.foo4().call(person2)  // person1
 ```
 
 ### 7.4 案例四
 
 ```javascript
-var name = 'winodw'
+var name = 'window'
 function Person(name) {
     this.name = name
     this.obj = {
         name: 'obj',
         foo1: function() {
-            reutrn function() {
-                consoel.log(this.name)
+            return function() {
+                console.log(this.name)
             }
         },
         foo2: function() {
             return () => {
-                consoel.log(this.name)
+                console.log(this.name)
             }
         }
     }
