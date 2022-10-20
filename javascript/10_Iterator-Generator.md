@@ -6,7 +6,7 @@
 
 **迭代器**（iterator），是确使用户可在容器对象（container，例如链表或数组）上遍访的对象，使用该接口无需关心对象的内部实现细节。其行为像数据库中的光标，迭代器最早出现在1974年设计的CLU编程语言中，在各种编程语言的实现中，迭代器的实现方式各不相同，但是基本都有迭代器，比如Java、Python等
 
-从迭代器的定义我们可以看出来，迭代器是帮助我们对某个数据结构进行遍历的对象。
+从迭代器的定义我们可以看出来，迭代器是帮助我们**对某个数据结构进行遍历的对象**。
 
 在JavaScript中，迭代器也是一个具体的对象，这个对象需要符合迭代器协议（iterator protocol）：
 
@@ -30,15 +30,16 @@ next方法有如下的要求：
 
 ```javascript
 const createIteratorArray(arr) {
-  let index = 0
-  return {
-        next() {
-              if(index < arr.length) {                                                                                return {done: false, value: arr[index++]}                     
-              } else {
-                   return {done: true, value: undefined}
-              }                                                                   
-        }              
-  }
+    let index = 0
+    return {
+    next() {
+    if(index < arr.length) {    
+      return {done: false, value: arr[index++]}                     
+      } else {
+           return {done: true, value: undefined}
+        }                                                                   
+      }              
+   }
 }
 const arr = ['bob', 'marty', 'tom']
 console.log(createIteratorArray(arr).enxt())
@@ -60,19 +61,44 @@ console.log(createIteratorArray(arr).enxt())
 ### 2.1 可迭代对象代码
 
 ```javascript
-const obj = {
-  arr:['bob', 'marty', 'tom']
-  [Symbol.interator]: function() {
-    let index = 0
-    next: () => {
-      if(index < this.arr.length) {
-         return {done: false, value: this.arr[index++]}
-         } else {
-           return {done: true}
-         }
+const info = {
+      name: 'bob',
+      age: 18,
+      height: 1.88,
+      [Symbol.iterator]() {
+        let index = 0
+        return {
+          next: () => {
+            // if (index < Object.keys(this).length) {
+            if (index < Object.values(this).length) {
+              // if (index < Object.entries(this).length) {
+              return {
+                done: false,
+                value: Object.values(this)[index++]
+              }
+            } else {
+              return {
+                done: true
+              }
+            }
+          },
+          return() {
+            return {
+              done: true
+            }
+          }
+        }
+      }
     }
-  }
-}
+    const objIterator = info[Symbol.iterator]()
+    console.log(objIterator.next())
+    console.log(objIterator.next())
+    console.log(objIterator.next())
+    console.log(objIterator.next())
+
+    for (const i of info) {
+      console.log(i)
+    }
 ```
 
 ## 三、原生迭代器对象
@@ -169,7 +195,7 @@ for (const i of c) {
 
 ### 7.1 什么是生成器
 
-生成器是ES6中新增的一种函数控制、使用的方案，它可以让我们**更加灵活的控制函数什么时候继续执行、暂停执行**等
+生成器是ES6中新增的一种函数**控制**、**使用**的方案，它可以让我们**更加灵活的控制函数什么时候继续执行、暂停执行**等
 
 平时我们会编写很多的函数，这些函数终止的条件通常是返回值或者发生了异常
 
@@ -280,5 +306,33 @@ const generator = foo()
 generator.next()
 generator.throw('err throw')
 generator.next()
+```
+
+### 7.6 生成器替代迭代器
+
+```js
+class Person {
+    constructor(name, age, height) {
+      this.name = name
+      this.age = age
+      this.height = height
+    }
+
+    // *[Symbol.iterator]() {
+    //   for (let i = 0; i < Object.values(this).length; i++) {
+    //     yield Object.values(this)[i]
+    //   }
+    // }
+
+    // 语法糖写法
+    *[Symbol.iterator]() {
+      yield* Object.values(this)
+    }
+  }
+  const p = new Person('bob', 18, 1.88)
+
+  for (const i of p) {
+    console.log(i)
+  }
 ```
 

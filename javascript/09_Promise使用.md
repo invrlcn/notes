@@ -137,9 +137,9 @@ then方法是Promise对象上的一个方法：它其实是放在**Promise的原
 
 then方法接受两个参数：
 
-fulfilled的回调函数：当状态变成fulfilled时会回调的函数
+onfulfilled的回调函数：当状态变成fulfilled时会回调的函数
 
-reject的回调函数：当状态变成reject时会回调的函数
+onrejected的回调函数：当状态变成reject时会回调的函数
 
 ```javascript
 promise.then(res => {
@@ -235,7 +235,13 @@ promise.catch(err => {
 
 ### 6.2 返回值
 
-上catch方法也是会返回一个Promise对象的，所以catch方法后面我们可以继续调用then方法或者catch方法：
+情况一：返回一个普通的值
+
+情况二：返回一个Promise
+
+情况三：返回一个thenable值
+
+catch方法也是会返回一个Promise对象的，所以catch方法后面我们可以继续调用then方法或者catch方法：
 
 下面的代码，后续是catch中的err2打印，还是then中的res打印呢？
 
@@ -331,11 +337,11 @@ new Promise((resolve, reject) => reject('invr'))
 
 ## 十、all方法
 
-它的作用是**将多个Promise包裹在一起形成一个新的Promise**。**新的Promise状态由包裹的所有Promise共同决定：**
+接受可迭代的参数,作用是**将多个Promise包裹在一起形成一个新的Promise**。**新的Promise状态由包裹的所有Promise共同决定：**
 
 当所有的Promise状态变成fulfilled状态时，新的Promise状态为fulfilled，并且会将所有Promise的返回值组成一个数组
 
-当有一个Promise状态为reject时，新的Promise状态为reject，并且会将**第一个reject的返回值作为参数**
+当有一个Promise状态为rejected时，新的Promise状态为reject，并且会将**第一个reject的返回值作为参数**
 
 ```javascript
 const p1 = new Promise((resolve, reject) => {})
@@ -350,19 +356,23 @@ Promise.all([p1, p2, p3]).then(res => {
 
 ## 十一、allSettled方法
 
-all方法有一个缺陷：**当有其中一个Promise变成reject状态时，新Promise就会立即变成对应的reject状态**
+all方法有一个缺陷：**当有其中一个Promise变成rejected状态时，新Promise就会立即变成对应的reject状态**
 
 那么对于resolved的，以及依然处于pending状态的Promise，我们是获取不到对应的结果的
 
 **在ES11（ES2020）中，添加了新的API Promise.allSettled：**
 
-该方法会在**所有的Promise都有结果（settled），无论是fulfilled，还是reject时，才会有最终的状态**，**并且这个Promise的结果一定是fulfilled的**
+该方法会在**所有的Promise都有结果（settled），无论是fulfilled，还是reject时，才会有最终的状态**，**并且这个Promise的结果一定是fulfilled的. 返回一个数组,里面为对象.可以通过status值为fulfilled/rejected来判断当前状态,对应的值分别为value/reason**
 
 ```javascript
 Promise.allSettled([p1, p2, p3]).then(res => {
   console.log(res)
-}).catch(err => {
-  console.log(err)
+  for(let i of res) {
+    console.log(i)
+    console.log(i.status)
+    console.log(i.value)
+    console.log(i.reason)
+  }
 })
 ```
 
@@ -384,7 +394,7 @@ Promise.race([p1, p2, p3]).then(res => {
 
 any方法是ES12中新增的方法，和race方法是类似的：
 
-**any方法会等到一个fulfilled状态，才会决定新Promise的状态**，**如果所有的Promise都是reject的，那么也会等到所有的Promise都变成rejected状态**。**如果所有的Promise都是reject的，那么会报一个AggregateError的错误**
+**any方法会等到一个fulfilled状态，才会决定新Promise的状态**，**如果所有的Promise都是rejected的，那么也会等到所有的Promise都变成rejected状态**。**如果所有的Promise都是reject的，那么会报一个AggregateError的错误**
 
 ```javascript
 Promise.any([p1, p2, p3]).then(res => {
@@ -394,6 +404,3 @@ Promise.any([p1, p2, p3]).then(res => {
 })
 ```
 
-## 十四、手写Promise各种实现
-
-详见手写代码
