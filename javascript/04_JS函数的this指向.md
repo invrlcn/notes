@@ -198,7 +198,7 @@ var names = ['abc', 'cba', 'nba']
 var obj = {name: 'lcn'}
     names.forEach(function(i) {
         console.log(this)  // 三次obj对象
-    }, obj)
+    })
 
 var box = document.querySelector('.box')
 box.onclick = function() {
