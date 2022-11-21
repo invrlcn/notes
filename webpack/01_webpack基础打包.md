@@ -18,6 +18,8 @@
 
 **我们先来看一下官方的解释：** 
 
+**webpack** is a *static module bundler* for modern JavaScript applications.
+
 **webpack是一个静态的模块化打包工具，为现代的JavaScript应用程序** 
 
 我们来对上面的解释进行拆解： 
