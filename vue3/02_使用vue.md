@@ -42,6 +42,10 @@ Vue的CDN引入：
 
 **npm install vue@next**
 
+2022.3.7后vue3已结作为vue默认版本
+
+**npm install vue**
+
 ## 四、通过vue cli脚手架创建
 
 **vue create 文件名**
