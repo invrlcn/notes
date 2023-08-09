@@ -14,7 +14,7 @@ CLI是Command-Line Interface, 翻译为命令行界面； 我们可以通过CLI�
 
 **安装Vue CLI** ：我们是进行全局安装，这样在任何时候都可以通过vue的命令来创建项目
 
-**<span style='color:red'>npm install @vue/cli -g</span>**
+**<span style='color:red'>npm install @vue/cli  -g</span>**
 
 **升级Vue CLI：** 
 

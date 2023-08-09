@@ -46,7 +46,10 @@ Vue的CDN引入：
 
 **npm install vue**
 
-## 四、通过vue cli脚手架创建
+## 四、通过vue cli脚手架创建(基于webpack)
 
 **vue create 文件名**
 
+## 五、通过npm 创建(基于vite)
+
+**npm init vue@latest**

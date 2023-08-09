@@ -372,5 +372,3 @@ console.log(typeof score)  // string
 ### 7.6 **v-mode组件上使用**
 
 v-model也可以使用在组件上，Vue2版本和Vue3版本有一些区别
-
-具体后面再说
