@@ -1,10 +1,12 @@
 ## 一. **React是什么？**
 
-官方对它的解释：**用于构建用户界面的 Ja ![](../imgs/react/%E8%AE%A4%E8%AF%86react.png)
+官方对它的解释：**用于构建用户界面的 Javascript库** 
+
+![](../imgs/react/%E8%AE%A4%E8%AF%86react.png)
 
 ## 二. **React的介绍（技术角度）**
 
-React的官网文档：https://zh-hans.reactjs.org/
+React的官网文档：https://zh-hans.react.dev/
 
 ![](../imgs/react/react%E4%BB%8B%E7%BB%8D.png)
 
