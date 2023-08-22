@@ -313,8 +313,8 @@
     -  https://github.com/facebook/react/issues/11527#issuecomment-360199710；
   - setState设计为异步，**可以显著的提升性能**
     - 如果每次调用 setState都进行一次更新，那么意味着render函数会被频繁调用，界面重新渲染，这样效率是很低的
-    - 最好的办法应该是获取到多个更新，之后进行批量更新
-  - 如果同步更新了state，但是还没有执行render函数，那么state和props不能保持同步
+    - 最好的办法应该是获取到多个更新，之后进行**批量更新**
+  - **如果同步更新了state，但是还没有执行render函数，那么state和props不能保持同步**
     - state和props不能保持一致性，会在开发中产生很多的问题
 
 ### 9.3 **如何获取异步的结果**
@@ -343,7 +343,7 @@
 
 - 分成两种情况：
   - **在组件生命周期或React合成事件中，setState是异步**
-  - **在setTimeout或者原生dom事件中，setState是同步**
+  - **在Promise.then()回调/setTimeout或者原生dom事件中，setState是同步**
 
 ### 9.5 **setState默认是异步的（React18之后）**
 
@@ -353,7 +353,7 @@
 
 
 
-- **如果希望代码可以同步会拿到，则需要执行特殊的flushSync操作**
+- **如果希望代码可以同步会拿到，则需要执行特殊的flushSync操作(React18之前)**
 
 ![](../imgs/react/flushSync%E5%87%BD%E6%95%B0.png)
 
