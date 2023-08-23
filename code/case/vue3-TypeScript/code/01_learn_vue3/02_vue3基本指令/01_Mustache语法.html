@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <template id="lcn">
+    <!-- 1.mustache的基本使用 -->
+    <h2>{{msg}} -- {{msg}}</h2>
+    <!-- 2.是一个表达式 -->
+    <h2>{{value * 10}}</h2>
+    <h2>{{msg.split(" ").reverse().join(" ")}}</h2>
+    <!-- 3.也可以调用函数 -->
+    <!-- 可以使用computed(计算属性) -->
+    <h2>{{msgHandle()}}</h2>
+    <!-- 4.三元运算符 -->
+    <h2>{{isStr ? "Str" : "str"}}</h2>
+    <button @click="btnClick">切换</button>
+  </template>
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.createApp({
+      template: "#lcn",
+      data() {
+        return {
+          msg: "Hello, World",
+          value: 20,
+          isStr: false
+        }
+      },
+      methods: {
+        msgHandle() {
+          return this.msg.split(" ").reverse().join(" ")
+        },
+        btnClick() {
+          this.isStr = !this.isStr
+        }
+      }
+    }).mount("#app")
+  </script>
+</body>
+</html>

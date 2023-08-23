@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const arr = [12, 23, 43, 54, 25, 56, 46]
+    const arr2 = [
+      {
+        name: 'bob',
+      },
+      {
+        age: 18
+      },
+      {
+        address: '杭州市'
+      }
+
+    ]
+    // 1. forEach() => cnForEach()
+    // arr.cnForEach(function() {})
+
+    // 版本一:
+    // function cnForEach(fn) {
+    //   for (let i = 0; i < arr.length; i++) {
+    //     fn(arr[i], i, arr)
+    //   }
+    // }
+    // cnForEach(function (item, index, arr) {
+    //   console.log(item, index, arr)
+    // })
+
+    // 版本二:
+    // function cnForEach(fn, arr) {
+    //   for(let i = 0; i < arr.length; i++) {
+    //     fn(arr[i], i, arr)
+    //   }
+    // }
+    // cnForEach(function(item, index, arr) {
+    //   console.log(item, index, arr)
+    // }, ['asa', 'sda', 'fgd'])
+
+    // 版本三:
+    // Array.prototype.cnForEach = function(fn) {
+    //   for(let i = 0; i < this.length; i++) {
+    //     fn(this[i], i, this)
+    //   }
+    // }
+    // arr.cnForEach(function(item, index, arr) {
+    //   console.log(item, index, arr)
+    // })
+    // arr2.cnForEach(function(item, index, arr) {
+    //   console.log(item, index, arr)
+    // })
+
+    // 2. find() => cnFind()
+    Array.prototype.cnFind = function (fn) {
+      for (let i = 0; i < this.length; i++) {
+        let isFlat = fn(this[i], i, this)
+        if (isFlat) return this[i]
+      }
+    }
+
+    const res = arr.cnFind(function (item, index, arr) {
+      // console.log(item, index, arr)
+      return item % 2 === 0
+    })
+    console.log(res)
+
+    // map()
+
+    // reduce()
+  </script>
+  </script>
+</body>
+
+</html>

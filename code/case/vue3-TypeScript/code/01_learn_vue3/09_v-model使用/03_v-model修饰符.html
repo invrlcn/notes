@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <template id="lcn">
+    <!-- 1.lazy修饰符 -->
+    <input type="text" v-model.lazy="msg">
+    <!-- 2.number修饰符 -->
+    <input type="text" v-model.number="numbers">
+    <button @click="btn">点击</button>
+    <!-- 3.trim修饰符 -->
+    <input type="text" name="" id="" v-model.trim="msg">
+    <button @click="btns">点击</button>
+    <h2>{{msg}}</h2>
+  </template>
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.createApp({
+      template: "#lcn",
+      data() {
+        return {
+          msg: "Hello, World",
+          numbers: 111
+        }
+      },
+      methods: {
+        btn() {
+          console.log(this.numbers, typeof this.numbers)
+        },
+        btns() {
+          console.log(this.msg)
+        }
+      }
+    }).mount("#app")
+  </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 两类操作:
+    // 第一类操作: 继续返回一个新的函数, 继续接受参数
+    // 第二类操作: 直接执行fn的函数
+
+    function foo(m, n, o) {
+      console.log(m + n + o)
+      console.log(this)
+    }
+    function bar(a, b) {
+      console.log(a * b)
+      console.log(this)
+    }
+
+    function cnCurrying(fn) {
+      return function compare(...args) {
+        if (args.length >= fn.length) {
+          fn.call(this, ...args)
+          // fn.apply(this, args)
+        } else {
+          return function curry(...agrs2) {
+            return compare.call(...args, ...agrs2)
+            // return compare.apply([...args, ...agrs2])
+          }
+        }
+      }
+    }
+
+    const c1 = cnCurrying(foo)
+    c1.call({ name: 'bob' }, 10, 20, 30)
+    c1(10, 20)(30)
+    c1(10)(20)(30)
+
+    const c2 = cnCurrying(bar)
+    c2.apply({ name: 'bob' }, [10, 20])
+    c2.call({ name: 'tom' }, 10, 20)
+
+  </script>
+</body>
+
+</html>

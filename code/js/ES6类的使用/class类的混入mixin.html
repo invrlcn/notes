@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 通过函数声明的类可以多继承的,但是通过class声明的类只能单继承
+
+    // class Ply {
+    //   ply() {
+    //     console.log('ply')
+    //   }
+    // }
+
+    // class Run {
+    //   run() {
+    //     console.log('run')
+    //   }
+    // }
+    function MixinA(c) {
+      return class extends c {
+        run() {
+          console.log('run')
+        }
+      }
+    }
+    function MixinB(c) {
+      return class extends c {
+        ply() {
+          console.log('ply')
+        }
+      }
+    }
+
+    class Bird extends MixinA(MixinB(class { })) {
+      eat() {
+        console.log('eat')
+      }
+    }
+    const b = new Bird()
+    b.eat()
+    b.ply()
+    b.run()
+  </script>
+</body>
+
+</html>

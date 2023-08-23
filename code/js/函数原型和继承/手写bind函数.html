@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function foo(name, age, height, address) {
+      console.log(this)
+      console.log(name, age, height, address)
+    }
+
+    Function.prototype.cnBind = function (thisArg, ...others) {
+      return (...args) => {
+        thisArg = thisArg === null || thisArg === undefined ? window : Object(thisArg)
+        const fn = Symbol()
+        thisArg[fn] = this
+        thisArg[fn](...others, ...args)
+        delete thisArg[fn]
+      }
+    }
+
+
+    const b1 = foo.cnBind({ name: 'bob' }, 'bob', 20)
+    // const b2 = foo.cnBind({ name: 'bob' }, 'bob', 20)
+    b1(1.88, '杭州市')
+    // b2()
+
+  </script>
+</body>
+
+</html>

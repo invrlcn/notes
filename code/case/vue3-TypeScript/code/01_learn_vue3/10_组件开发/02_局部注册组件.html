@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="lcn">
+    <h2>{{msg}}</h2>
+    <component-a></component-a>
+    <component-b></component-b>
+  </template>
+
+  <template id="a">
+    <h2>{{amsg}}</h2>
+  </template>
+
+  
+  <script src="../js/vue.js"></script>
+ 
+  <script>
+    const ComponentA = {
+      template: '#a',
+      data() {
+        return {
+          amsg: 'invrlcn'
+        }
+      }
+    }
+    const ComponentB = {
+      template: `<h2>{{bmsg}}</h2>`,
+      data() {
+        return {
+          bmsg: 'bob'
+        }
+      }
+    }
+    Vue.createApp({
+      components: {
+        ComponentA,
+        ComponentB
+      },
+      template: "#lcn",
+      data() {
+        return {
+          msg: "Hello, World"
+        }
+      }
+    }).mount("#app")
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*
+      生成器通过yield控制函数执行, 每次调用next()就会执行yield上面的代码及yield后面的代码
+      传参注意:
+      1. 第一次传参通过函数传参,不通过next()传参
+      2. 每次的传参由前一个yield接受
+    */
+    function* foo(v1) {
+      console.log('第一段代码', v1)
+      const v2 = yield 'aa'
+      console.log('第二段代码', v2)
+      const v3 = yield 'bb'
+      console.log('第三段代码', v3)
+      const v4 = yield 'cc'
+      console.log('第四段代码', v4)
+    }
+    const generator = foo('第一次执行')
+    console.log(generator.next())
+    console.log(generator.next('第二次执行'))
+    console.log(generator.next('第三次执行'))
+    console.log(generator.next('第四次执行'))
+  </script>
+</body>
+
+</html>

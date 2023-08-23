@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function foo(name, age) {
+      console.log(this)
+      console.log(name, age)
+    }
+    // console.log(foo.apply === Function.prototype.apply)
+
+    // 封装抽取
+    // Function.prototype.execFn = function (thisArg, others) {
+    //   thisArg = thisArg === null || thisArg === undefined ? window : Object(thisArg)
+
+    //   Object.defineProperty(thisArg, 'fn', {
+    //     configurable: true,
+    //     value: this
+    //   })
+    //   thisArg.fn(...others)
+    // }
+
+    // cnCall()
+    /**
+     * this: 调用对象
+     * thisArg: this对象
+     * 隐式调用改变this
+    **/
+
+    // Function.prototype.cnCall = function (thisArg, ...args) {
+    //   thisArg = thisArg === null || thisArg === undefined ? window : Object(thisArg)
+    //   const fn = Symbol()
+    //   thisArg[fn] = this
+    //   thisArg[fn](...args)
+    //   delete thisArg[fn]
+    // }
+
+
+    // foo.cnCall({ name: 'bob' }, 'bob', 18)
+    // foo.cnCall(11, 'tom', 28)
+    // foo.cnCall('hahha', 'mary', 28)
+    // foo.cnCall(undefined, 'curry', 28)
+
+    // cnApply
+
+    Function.prototype.cnApply = function (thisArg, args) {
+      thisArg = thisArg === null || thisArg === undefined ? window : Object(thisArg)
+      const fn = Symbol()
+      Object.defineProperty(thisArg, fn, {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        value: this
+      })
+      thisArg[fn](...args)
+      delete thisArg[fn]
+    }
+
+    const f = foo.cnApply({ name: 'bob' }, ['bob', 18])
+    foo.cnApply(11, ['tom', 28])
+    foo.cnApply('hahha', ['mary', 28])
+    foo.cnApply(undefined, ['curry', 28])
+
+  </script>
+</body>
+
+</html>

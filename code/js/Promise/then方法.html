@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*
+      then方法接受两个参数(onfulfilled, onrejected),都是回调函数(成功回调和失败的回调)
+      then方法可以多次调用
+      then方法返回值也是Promise,它的状态和then方法返回值有关
+    */
+    const promise = new Promise((resolve, reject) => {
+      resolve('成功')
+      // reject('失败')
+    })
+
+    // promise.then(res => {
+    //   console.log('res:', res)
+    // }, err => {
+    //   console.log('err:', err)
+    // })
+    promise.then(res => {
+      console.log('第一个then方法:', res)
+      // 1. 普通值(默认返回undefined)
+      return 'aa'
+    }).then(res => {
+      console.log('第二个then方法:', res)
+      // 2. 返回一个新的Promise,由新的Promise决定
+      return new Promise((resolve, reject) => {
+        // resolve('新的Promise:成功')
+        reject('新的Promise:失败')
+      })
+    }).then(res => {
+      console.log('第三个then方法:', res)
+      // 3. 返回一个对象,实现了thenable方法
+      return {
+        then(resolve, reject) {
+          resolve('then方法:成功')
+          // reject('then方法:失败')
+        }
+      }
+    }).then(res => {
+      console.log('第四个then方法:', res)
+    }).catch(err => {
+      console.log('catch方法:', err)
+    })
+  </script>
+</body>
+
+</html>

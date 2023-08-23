@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <template id="lcn">
+    <h2>{{msg}}</h2>
+    <ul>
+      <!-- 遍历数组 -->
+      <li v-for="(item, index) of movies">{{index}}---{{item}}</li>
+    </ul>
+    <input type="text" @keyup.enter="keyup" v-model="movie">
+  </template>
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.createApp({
+      template: "#lcn",
+      data() {
+        return {
+          msg: "电影列表",
+          movies: [
+            '我不是药神',
+            '星际穿越',
+            '教父',
+            '阿甘正传',
+            '肖申克的救赎'
+          ],
+          movie: ''
+        }
+      },
+      methods: {
+        keyup() {
+          this.movies.push(this.movie)
+          this.movie = ''
+        }
+      }
+    }).mount("#app")
+  </script>
+</body>
+</html>

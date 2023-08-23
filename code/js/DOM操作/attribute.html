@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="box" id="container" style="color: red;" name="bob" age="18" height="1.88" data-address="杭州市">
+    哈哈哈
+  </div>
+
+  <script>
+    // 1. attribute分类
+    // 标准的attribute: class id style href type value等
+    // 非标准的attribute: name age height等自己定义的属性
+
+    // 2. attribute操作
+    const boxEl = document.querySelector('.box')
+    // console.log(boxEl.hasAttribute('id'))  // 检查特性是否存在
+    // console.log(boxEl.getAttribute('class'))  // 获取这个特性值
+    // boxEl.setAttribute('name', 'tom')  //  设置这个特性值
+    // console.log(boxEl.getAttribute('name'))
+    // boxEl.removeAttribute('height')  // 移除这个特性值
+    // console.log(boxEl.hasAttribute('height'))
+    // console.log(boxEl.attributes)
+    // for (let attrs of boxEl.attributes) {
+    //   console.log(attrs)
+    // }
+
+    // 3. data-*属性
+    // 通过dataset.* 获取
+    // console.log(boxEl.dataset.address)
+
+    // 3. className和classList
+    boxEl.className = 'box1'
+    // console.log(boxEl.attributes)
+    boxEl.classList.add('aaa')
+    // console.log(boxEl.getAttribute('class'))
+    boxEl.classList.remove('aaa')
+    // console.log(boxEl.getAttribute('class'))
+    boxEl.classList.toggle('bbb')  // 如果类不存在就添加类，存在就移除它。
+    // console.log(boxEl.getAttribute('class'))
+    console.log(boxEl.classList.contains('bbb'))  // 检查给定类，返回 true/false
+
+    // style属性
+    boxEl.style.width = '100px'
+    boxEl.style.fontSize = '20px'
+    boxEl.style.backgroundColor = 'orange'
+
+    // style元素的读取
+    // 1> 内联样式
+    // 通过 style.*  读取
+
+    // 2> 对于style、css文件中的样式读取不到, 可以使用 getComputedStyle全局函数实现
+    // getComputedStyle((boxEl).width)
+  </script>
+</body>
+
+</html>

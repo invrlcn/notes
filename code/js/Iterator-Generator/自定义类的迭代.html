@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    class Person {
+      constructor(name, age, height, address) {
+        this.name = name
+        this.age = age
+        this.height = height
+        this.address = address
+      }
+      [Symbol.iterator]() {
+        let index = 0
+        return {
+          next: () => {
+            if (index < Object.entries(this).length) {
+              return {
+                done: false,
+                value: Object.entries(this)[index++]
+              }
+            } else {
+              return {
+                done: true
+              }
+            }
+
+          },
+          return: () => {
+            return {
+              done: true
+            }
+          },
+          throw: () => {
+            return new Error('error')
+          }
+        }
+      }
+    }
+    const p = new Person('bob', 18, 1.88, '杭州市')
+    const pIterator = p[Symbol.iterator]()
+    console.log(pIterator.next())
+    console.log(pIterator.next())
+    console.log(pIterator.next())
+    console.log(pIterator.next())
+    console.log(pIterator.next())
+
+    console.log(pIterator.return())
+
+    console.log(pIterator.throw())
+
+    for (const i of p) {
+      console.log(i)
+    }
+  </script>
+</body>
+
+</html>

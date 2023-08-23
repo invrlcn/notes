@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    thead {
+      background-color: #c2c2c2;
+    }
+
+    tr td {
+      border: 1px solid #c2c2c2;
+      padding: 10px 16px;
+    }
+
+    .del {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./data.js"></script>
+  <script src="./format.js"></script>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          books,
+          del: 'del'
+        }
+      }
+
+      decrement(index) {
+        const newBooks = [...this.state.books]
+        newBooks[index].count -= 1
+        this.setState({ books: newBooks })
+      }
+      increment(index) {
+        const newBooks = [...this.state.books]
+        newBooks[index].count += 1
+        this.setState({ books: newBooks })
+      }
+      deleteHandle(index) {
+        const newBooks = [...this.state.books]
+        newBooks.splice(index, 1)
+        this.setState({ books: newBooks })
+      }
+
+      totalPriceFn() {
+        return this.state.books.reduce((pre, item) => {
+          return pre + item.count * item.price
+        }, 0)
+      }
+
+      render() {
+        const { books, del } = this.state
+        let el
+        if (books.length > 0) {
+          el = <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>序号</th>
+                  <th>书籍名称</th>
+                  <th>出版日期</th>
+                  <th>价格</th>
+                  <th>购买数量</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                {books.map((i, index) => {
+                  return (
+                    <tr key={i.id}>
+                      <td>{index + 1}</td>
+                      <td>{i.name}</td>
+                      <td>{i.date}</td>
+                      <td>{formatPrice(i.price)}</td>
+                      <td>
+                        <button disabled={i.count <= 1 ? true : false} onClick={() => this.decrement(index)}>-</button>
+                        {i.count}
+                        <button onClick={() => this.increment(index)}>+</button>
+                      </td>
+                      <td className={del} onClick={() => this.deleteHandle(index)}>删除</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+            <h2>总价格: {formatPrice(this.totalPriceFn())}</h2>
+          </div>
+        } else {
+          el = <h2>请添加书籍~</h2>
+        }
+
+        return el
+      }
+    }
+
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<App />)
+  </script>
+</body>
+
+</html>

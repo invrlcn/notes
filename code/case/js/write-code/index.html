@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text">
+  <button>取消</button>
+  <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
+  <script src="./debounce.js"></script>
+  <script src="./throttle.js"></script>
+  <script>
+    // LStorage.getItem('token', '123123487129048y1824y1')
+
+    const inp = document.querySelector('input')
+    const btn = document.querySelector('button')
+
+    // const inpChange = function (e) {
+    //   console.log(e.data)
+    // }
+
+
+    // const debounceFn = cnDebounce(function (e) {
+    //   if (e) {
+    //     console.log(e.data)
+    //   }
+    //   return 'abc'
+    // }, 1000, true)
+    // debounceFn().then(res => {
+    //   console.log(res)
+    // })
+    // btn.onclick = function () {
+    //   debounceFn.cancel()
+    // }
+
+
+    // debounce(防抖)
+    // underscore
+    // inp.oninput = _.debounce(inpChange, 1000)
+    // cnDebounce
+    // inp.oninput = debounceFn
+
+    // throttle(节流)
+    // underscore
+    // inp.oninput = _.throttle(inpChange, 1000)
+    // cnThrottle
+    // inp.oninput = cnThrottle(inpChange, 1000)
+    const throttleFn = cnThrottle(function (e) {
+      console.log(this.value)
+      return 'abc'
+    }, 1000, { leading: false, trailing: true })
+
+    inp.oninput = throttleFn
+    btn.onclick = function () {
+      throttleFn.cancel()
+    }
+    console.log(1111)
+    throttleFn('aaa').then(res => {
+      console.log("----")
+      console.log(res)
+    })
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .active {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          movies: ["大话西游", "星际穿越", "盗梦空间", "功夫"],
+          currentIndex: 0
+        }
+      }
+
+      liClick(index) {
+        this.setState({
+          currentIndex: index
+        })
+      }
+
+      render() {
+        const { movies, currentIndex } = this.state
+        const lis = (i, index) => <li
+          key={i}
+          className={currentIndex === index ? 'active' : ''}
+          onClick={() => this.liClick(index)}
+        >
+          {i}
+        </li>
+
+        return (
+          <div>
+            <ul>
+              {movies.map(lis)}
+            </ul>
+          </div>
+        )
+      }
+    }
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<App />)
+  </script>
+</body>
+
+</html>

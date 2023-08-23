@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // console.log(msg)
+    // var msg = 'hello. world'
+    // console.log(msg)
+
+    // console.log(name)
+    // let name = 'bob'
+    // console.log(name)
+
+    // 块级作用域
+
+    {
+      // var msg = 'hello'
+      let a = 'a'
+      const b = 'b'
+      class Person { }
+      function foo() {
+        console.log('foo')
+      }
+    }
+    // console.log(msg)
+    // console.log(a)
+    // console.log(b)
+    // const p = new Person()
+    foo()  // 函数可以访问到,浏览器引擎会做特殊处理,让我们像访问通过var声明的标识符一样访问到函数
+
+
+  </script>
+</body>
+
+</html>

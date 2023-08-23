@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 栈内存: 存放原始数据类型(String, Number, Boolean, Undefined, Null, Symbol, BigInt)
+     * 堆内存:存放对象(引用)类型(Object)
+     * */
+    // 现象一:
+    // const a = 123
+    // const b = 123
+    // console.log(a === b) // true
+
+    // 现象二:
+    // const obj = {}
+    // const info = {}
+    // console.log(obj === info) // false
+
+    // 现象三:
+    // const obj = {
+    //   name: 'bob'
+    // }
+    // const info = obj
+    // info.name = 'tom'
+    // console.log(obj.name) // tom
+
+    // 现象四:
+    // const obj = {
+    //   name: 'bob'
+    // }
+    // const info = {
+    //   obj: obj
+    // }
+    // info.obj = {
+    //   name: 'tom'
+    // }
+    // console.log(obj.name) // bob
+
+    // 现象五:
+    const obj = {
+      name: 'bob'
+    }
+    const info = {
+      obj: obj
+    }
+    info.obj.name = 'tom'
+    console.log(obj.name) // tom
+  </script>
+</body>
+
+</html>

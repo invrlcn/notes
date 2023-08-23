@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let newName = ''
+    const obj = {
+      name: 'bob',
+      age: 18,
+      height: 1.88,
+
+      // 对象的访问器
+      // set name(newValue) {
+      //   console.log('设置了name', newValue)
+      //   newName = newValue
+      // },
+      // get name() {
+      //   console.log('获取了name')
+      //   return newName
+      // }
+    }
+
+    // obj.name = 'tom'
+    // obj.name
+
+
+    // 属性描述符(存取属性描述符)
+    /**
+     * 1. 对于新增、删除等属性无法接监听
+     * **/
+    Object.keys(obj).forEach(i => {
+      let v = obj[i]
+      Object.defineProperty(obj, i, {
+        set(newValue) {
+          console.log(`设置了${i}`, newValue)
+          v = newValue
+        },
+        get() {
+          console.log(`获取了${i}`)
+          return v
+        }
+      })
+    })
+    obj.name = 'tom'
+    obj.age
+    obj.height = 1.66
+  </script>
+</body>
+
+</html>

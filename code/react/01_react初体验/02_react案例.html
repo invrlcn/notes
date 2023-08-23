@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    let msg = 'hello, world'
+    function changeText() {
+      msg = 'hello, react'
+      renderFn()
+    }
+
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    renderFn()   // 函数作用域提升
+
+    function renderFn() {
+      root.render(
+        <div>
+          <h2>{msg}</h2>
+          <button onClick={changeText}>切换</button>
+        </div>
+      )
+    }
+  </script>
+</body>
+
+</html>

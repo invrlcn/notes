@@ -1,0 +1,15 @@
+.title {
+  color: rgba(18,52,86,0.47059);
+  font-weight: 700;
+  font-size: 30px;
+  display: grid;
+
+  -webkit-user-select: none;
+
+     -moz-user-select: none;
+
+      -ms-user-select: none;
+
+          user-select: none;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9jc3Mvc3R5bGUuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsNkJBQWdCO0VBQ2hCLGdCQUFnQjtFQUNoQixlQUFlO0VBQ2YsYUFBYTs7RUFFYix5QkFBaUI7O0tBQWpCLHNCQUFpQjs7TUFBakIscUJBQWlCOztVQUFqQixpQkFBaUI7QUFDbkIiLCJmaWxlIjoicHJlLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi50aXRsZSB7XHJcbiAgY29sb3I6ICMxMjM0NTY3ODtcclxuICBmb250LXdlaWdodDogNzAwO1xyXG4gIGZvbnQtc2l6ZTogMzBweDtcclxuICBkaXNwbGF5OiBncmlkO1xyXG5cclxuICB1c2VyLXNlbGVjdDogbm9uZTtcclxufSJdfQ== */

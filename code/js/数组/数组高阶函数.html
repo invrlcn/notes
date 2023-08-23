@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const arr = [12, 23, 43, 54, 25, 56, 46]
+    // 1. forEach()
+    // arr.forEach(function (item, index, arr) {
+    //   console.log(item, index, arr)
+    //   console.log(this)
+    // }, { name: 'aa' })
+
+    // const obj = { name: 'aa', foo }
+    // function foo() {
+    //   arr.forEach((item, index, arr) => {
+    //     console.log(item, index, arr)
+    //     console.log(this)
+    //   })
+    // }
+    // obj.foo()
+
+    // 2. filter()
+    // const resArr = arr.filter(function (item, index, arr) {
+    //   // console.log(item, index, arr)
+    //   console.log(this)
+    //   return item % 2 === 0
+    // } ,{name: 'aa'})
+    // console.log(arr)
+    // console.log(resArr)
+
+    // function foo() {
+    //   const resArr = arr.filter( (item, index, arr) =>{
+    //   // console.log(item, index, arr)
+    //   console.log(this)
+    //   return item % 2 === 0
+    // } ,{name: 'aa'})
+    // console.log(arr)
+    // console.log(resArr)
+    // }
+    // obj.foo()
+
+    // 3. map()
+    // const resArr = arr.map((item, index, arr) => {
+    //   // console.log(item, index, arr)
+    //   return item * 10
+    // })
+    // console.log(arr)
+    // console.log(resArr)
+
+    // 4. reduce()
+    // const resArr = arr.reduce((preItem, item, index, arr) => {
+    //   // console.log(preItem, item, index, arr)
+    //   return preItem + item
+    // }, 0)
+    // console.log(arr)
+    // console.log(resArr)
+
+    // 5. find()
+    // const resArr = arr.find((item, index, arr) => {
+    //   // console.log(item, index, arr)
+    //   return item % 2 === 0
+    // })
+    // console.log(arr)
+    // console.log(resArr)
+
+    // 综合练习
+    // 求:一个数组中偶数元素的平方和
+    const res = arr.filter((item) => item % 2 === 0).map((item) => item * item).reduce((preItem, item) => preItem + item)
+    console.log(res)
+  </script>
+  </script>
+</body>
+
+</html>

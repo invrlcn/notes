@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const arr = [12, 32, 43, 54, 23, 55]
+    const res = arr.filter(item => item % 2 === 0)
+      .map(item => item ** 2)
+      .reduce((preItem, item) => preItem + item)
+    console.log(res)
+
+    // 箭头函数不绑定this, 由父级作用域决定
+  </script>
+</body>
+
+</html>

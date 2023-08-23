@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // const arr = ['abc', 'cba', 'nba', 'cbd']
+    // const arr1 = new Array('aaa', 'asd', 'asd')
+    // console.log(arr1)
+
+    // 属性
+    // console.log(arr.length)
+    // arr.length = 10
+
+    // 方法
+    // 1. 添加数组
+    // arr[4] = 'aaa'
+    // console.log(arr)
+
+    // 向后添加
+    // arr.push('aaa')
+
+    // 向前添加
+    // arr.unshift('hhh')
+
+
+    // 2. 删除数组
+    // delete arr[0]
+    // 从后删除
+    // arr.pop()
+    // 从前删除
+    // arr.shift()
+
+    // 3. 修改数组
+    // arr[0] = 'bbb'
+    // push/pop效率高于unshift/shift
+
+    // 4. 访问数组元素
+    // console.log(arr.at(1))
+    // console.log(arr.at(-1))
+
+    // es13/es2022新增字符串方法
+    // const str = 'hello, world'
+    // console.log(str.at(1))
+
+    // 5. 删除/替换/新增 splice(): 改变原数组
+    //  const a1 = arr.splice(1)
+    //  const a1 = arr.splice(1, 0)
+    //  const a1 = arr.splice(1, 0, 'ccc')
+    // const a1 = arr.splice(1, 2, 'ccc')
+    //  console.log(a1)
+    //  console.log(arr)
+
+    // 6. 遍历
+    // 1> for
+    const array = ['abc', 'cba', 'nba', 'cbd']
+    // for (let i = 0; i < array.length; i++) {
+    //   console.log(array[i])
+    // }
+
+    // 2> for..of(可迭代:string/array,得到值)
+    // for(let i of array) {
+    //   console.log(i)
+    // }
+
+    // 3> for..in(对象,得到key)
+    // for (let i in array) {
+    //   console.log(array[i])
+    // }
+
+    // 7. slice()/concat()/join()
+    // const newArr = array.concat(arr)
+    // console.log(newArr)
+    const res1 = array.slice(1, 3)
+    // console.log(res1)
+    // console.log(array)
+
+    // 8. 查找元素
+    // console.log(array.indexOf('cba'))
+    // console.log(array.indexOf('sss'))
+    // console.log(array.includes('cba'))
+    // console.log(array.find(function(v ,i, arr) {
+    //   console.log(v)
+    //   console.log(i)
+    //   console.log(arr)
+    // }))
+
+    // find/findIndex
+    // array.find((v, i, arr) => {
+    //   console.log(v)
+    //   console.log(i)
+    //   console.log(arr)
+    // })
+    array.findIndex(function (v, i, arr) {
+      // console.log(v)
+      // console.log(i)
+      // console.log(arr)
+    })
+
+    // 9. 排序
+    // const res = array.reverse()
+    // const res = array.sort()
+    // console.log(res) 
+    const arr = [12, 34, 54, 23, 56, 32, 45]
+    // const resArr = arr.sort()
+    // console.log(resArr)
+    // const resArr = arr.sort((a, b) => {
+    //   return a - b
+    // })
+    const resArr = arr.sort((a, b) => {
+      return b - a
+    })
+    // console.log(resArr)
+  </script>
+</body>
+
+</html>

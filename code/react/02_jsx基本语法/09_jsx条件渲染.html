@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          age: 18,
+          friends: {
+            name: 'bob'
+          },
+          isShow: true
+        }
+      }
+
+      changeHandle() {
+        this.setState({
+          isShow: !this.state.isShow
+        })
+      }
+
+      render() {
+        const { age, friends, isShow } = this.state
+        let flag
+        // 方式一：条件判断语句
+        // if (age >= 18) {
+        //   flag = <h2>成年人</h2>
+        // } else {
+        //   flag = <h2>未成年</h2>
+        // }
+
+        // 方式二：三元运算符
+        // flag = age >= 18 ? <h2>成年人</h2> : <h2>未成年</h2>
+
+        // 方式三：逻辑与运算符&&
+        // flag = friends && <h2>{friends.name}</h2>
+
+        // 方式四：可选链?.
+        // flag = <h2>{friends?.name}</h2>
+
+        // 实现v-show的效果
+
+        return (
+          <div>{flag}
+            <h2 style={{ display: isShow ? 'block' : 'none' }}>{age}</h2>
+            <button onClick={() => this.changeHandle()}>切换</button>
+          </div>
+        )
+      }
+    }
+
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<App />)
+  </script>
+</body>
+
+</html>

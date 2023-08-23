@@ -1,0 +1,60 @@
+// async function bar() {
+//   console.log("22222")       // 2
+//   return new Promise((resolve) => {
+//     resolve()
+//   })
+// }
+
+// async function foo() {
+//   console.log("111111")            // 1
+
+//   await bar()
+
+//   console.log("33333")    // 4
+// }
+
+// foo()
+// console.log("444444")       // 3
+
+// 111111
+// 22222
+// 444444
+// 33333
+
+
+async function async1 () {
+  console.log('async1 start')      // 2
+  await async2();
+  console.log('async1 end')         // 6
+}
+
+async function async2 () {
+  console.log('async2')          // 3
+  // 其实是 return undefined Promise 对象
+}
+
+console.log('script start')          // 1
+
+setTimeout(function () {
+  console.log('setTimeout')           // 8
+}, 0)
+ 
+async1();
+ 
+new Promise (function (resolve) {
+  console.log('promise1')         // 4
+  resolve();
+}).then (function () {
+  console.log('promise2')        // 7
+})
+
+console.log('script end')          // 5
+
+// script start
+// async1 start
+// async2
+// promise1
+// script end
+// async1 end
+// promise2
+// setTimeout

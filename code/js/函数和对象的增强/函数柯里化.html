@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // function foo(n, m, o) {
+    //   return n + m + o
+    // }
+    // const f = foo(10, 20, 30)
+    // console.log(f)
+
+    // foo()进行柯里化转换
+    function foo(n) {
+      return function bar(m) {
+        return function baz(o) {
+          return n + m + o
+        }
+      }
+    }
+    const f = foo(10)(20)(30)
+    console.log(f)
+
+    // 箭头函数简写
+    const res = n => m => o => n + m + o
+    console.log(res(10)(20)(30))
+  </script>
+</body>
+
+</html>

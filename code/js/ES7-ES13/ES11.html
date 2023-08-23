@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1. Bigint
+    // const maxInt = Number.MAX_SAFE_INTEGER
+    // const n1 = maxInt + 10000000
+    // const bigInt = 9007199254740991n
+    // const n2 = bigInt + 1n
+    // const n3 = bigInt + 2n
+    // console.log(maxInt)
+    // console.log(n1)
+    // console.log(n2)
+    // console.log(n3)
+
+    // 2. Nullish Coalescing Operator 空值合并操作符
+    // const str = ''
+    // const res1 = str || '默认值'
+    // const res2 = str ?? '默认值'
+    // console.log(res1)
+    // console.log(res2)
+
+    // 3. Optional Chaining 可选链
+    const obj = {
+      name: 'bob',
+      friend: {
+        name: 'tom',
+        run() {
+          console.log('running')
+        }
+      }
+    }
+
+    const res1 = obj.friend && obj.friend.name
+    console.log(res1)
+    const res2 = obj.friend?.name
+    console.log(res2)
+
+    // obj.friend.run && obj.friend.run()
+    obj?.friend?.run?.()  // 如果是调用方法,括号前面也得加?.防止undefined()
+
+    // 4. globalThis
+    console.log(globalThis)
+
+    // 5. for...in标准化: for...in是用于遍历对象的key的
+  </script>
+</body>
+
+</html>

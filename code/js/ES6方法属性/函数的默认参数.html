@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1. 
+    // function foo(name, age) {
+    //   // 1. 
+    //   // name = name === null || name === undefined ? '默认name' : name
+    //   // age = age === null || age === undefined ? '默认age' : age
+    //   console.log(name, age)
+    // }
+
+    // 2.  解构
+    // function foo({ name, age } = { name: '默认name', age: '默认age' }) {
+    //   console.log(name, age)
+    // }
+
+    // function foo({ name = '默认name', age = '默认age' } = {}) {
+    //   console.log(name, age)
+    // }
+
+    // 3.
+    // 多个参数一起使用,放在做后
+    // function foo(height, name = '默认name', age = '默认age',) {
+    //   console.log(name, age, height)
+    // }
+    // foo({ name: 'bob', age: 18 })
+    // foo(1.99)
+
+
+    // 剩余参数 rest
+    function bar(name, age = 18, height = 1.88, ...args) {
+      console.log(name, age, height)
+      console.log(args)
+    }
+    bar('bob', '杭州市', 'aaa', 'bbb')
+  </script>
+</body>
+
+</html>

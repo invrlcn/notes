@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    class Person {
+      constructor(name, age, address) {
+        this.name = name
+        this.age = age
+        this.address = address
+      }
+      running() {
+        console.log(this.name + 'running')
+      }
+      eating() {
+        console.log(this.name + 'eating')
+      }
+      static jump() {
+        console.log(this.name + 'jump')
+      }
+    }
+
+    class Student extends Person {
+      constructor(name, age, address, sno) {
+        super(name, age, address)
+        this.sno = sno
+      }
+      // running() {
+      //   console.log(this.name + 'running')
+      // }
+      // eating() {
+      //   console.log(this.name + 'eating')
+      // }
+      studying() {
+        super.eating()
+        console.log(this.name + 'studying')
+      }
+      static work() {
+        console.log(this.name + 'work')
+        super.jump()
+      }
+    }
+
+    const s = new Student('bob', 18, '杭州市', 101)
+    // s.running()
+    // s.studying()
+    // Student.work()
+
+    // 继承内置类
+    // const arr = ['abc', 'cba', 'mba']
+    // console.log(arr[2])
+
+    // 通过arr.lastItem()访问最后一个数组
+
+    // console.log(arr.lastItem())
+
+    // 1. 继承内置类
+    // class CnArr extends Array {
+    //   // 访问器
+    //   // get lastItem() {
+    //   //   return this[this.length - 1]
+    //   // }
+    //   lastItem() {
+    //     return this[this.length - 1]
+    //   }
+    // }
+    // const c = new CnArr('abc', 'cba', 'mba')
+    // const res = c.lastItem()
+    // console.log(res)
+
+    // 2. 直接继在内置类添加方法
+    Array.prototype.lastItem = function () {
+      return this[this.length - 1]
+    }
+
+    const arr = ['abc', 'cba', 'mba']
+    const res = arr.lastItem()
+    console.log(res)
+  </script>
+</body>
+
+</html>

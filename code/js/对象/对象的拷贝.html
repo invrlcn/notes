@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 对象拷贝
+    // 浅拷贝
+    obj1 = {
+      name: 'zs',
+      age: 12,
+      sex: '男',
+      dog: {
+        name: 'jm',
+        age: 2
+      }
+    }
+    obj2 = {};
+    // 使用遍历拷贝obj1的对象
+    for (var k in obj1) {
+      obj2[k] = obj1[k]
+    }
+    // 修改Obj1 的属性 obj2 不会改变
+    // 修改obj1 里面的对象dog的属性  obj2 也会改变  因为拷贝的是对象的地址
+    obj1.name = 'xx';
+    obj1.dog.name = 'dh';
+    console.log(obj2);
+  </script>
+</body>
+</html>

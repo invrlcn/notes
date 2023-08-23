@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="./useInherit.js"></script>
+  <script>
+    // 1. hasOwnProperty(): 对象是否有某一个属于自己的属性（不是在原型上的属性
+    // const obj = {
+    //   name: 'bob'
+    // }
+    // obj.__proto__.age = 18
+    // console.log(Object.hasOwnProperty('name'))  // true
+    // console.log(Object.hasOwnProperty('age'))   // false
+
+    // 2. in/for in 操作符(判断某个属性是否在某个对象或者对象的原型上)
+    // console.log('name' in obj)  // true
+    // console.log('age' in obj)  // true
+    // console.log('height' in obj)  // false
+
+    // 3. instanceof(): 检测构造函数和实例对象的关系,某一个实例对象的原型链上是否出现构造函数的prototype
+    // typeof(): 判断类型(基本数据类型)
+    // function F() { }
+    // function P() { }
+    // const f = new F()
+    // console.log(f instanceof F)  // true
+    // console.log(f instanceof P)  // false
+    // console.log(f.__proto__.constructor.name)
+
+    // 4. isPrototypeOf(): 检测某个对象是否出现在某个实例对象的原型链上
+    const obj = {
+      name: 'bob'
+    }
+    const info = {
+      age: 18
+    }
+    const newObj = createObject(obj)
+    console.log(obj.isPrototypeOf(info))  // false
+    console.log(obj.isPrototypeOf(newObj))  // true
+  </script>
+</body>
+
+</html>

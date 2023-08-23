@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const obj = {
+      name: ' bob',
+      age: 18,
+      address: '杭州市',
+      eat: function () {
+        console.log(this.name + 'eating')
+      },
+      study: function () {
+        console.log(this.name + 'study javascript')
+      }
+    }
+    obj.eat()
+    obj.study()
+
+    // this位置
+    // 1.
+    // function foo() {
+    //   console.log(this)   // window
+    // }
+    // foo()
+
+    // 2.
+    // const info = {
+    //   name: 'bob',
+    //   foo: function() {
+    //     console.log(this)
+    //   }
+    // }
+    // info.foo()  // info
+
+    // 3.
+    // const info = {
+    //   name: 'bob',
+    //   foo: function() {
+    //     console.log(this)
+    //   }
+    // }
+    // const bar = info.foo
+    // bar()  // window
+
+    // 4.
+    function foo() {
+      console.log(this)
+    }
+    const info = {
+      name: 'bob',
+      foo: foo
+    }
+    info.foo()  // info
+  </script>
+</body>
+
+</html>

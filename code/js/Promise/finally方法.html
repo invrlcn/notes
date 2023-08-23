@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // finally(): 不管返回resolve还是reject,finally都会执行,不会接收参数
+    const promise = new Promise((resolve, reject) => {
+      // resolve('成功')
+      reject('失败')
+    })
+
+    promise.then(res => {
+      console.log('res:', res)
+    }).catch(err => {
+      console.log('err:', err)
+    }).finally(() => {
+      console.log('finally方法执行1')
+    }).finally(() => {
+      console.log('finally方法执行2')
+    }) 
+  </script>
+</body>
+
+</html>

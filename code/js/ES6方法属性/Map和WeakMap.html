@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 使用Map可以在对象中把其他类型作为key:比如对象
+    const m1 = new Map()
+    const obj = { name: 'bob' }
+    const info = { name: 'tom' }
+
+    m1.set(obj, 'age')
+    m1.set(info, 'height')
+
+    // console.log(m1.get(obj))
+    // console.log(m1.get(info))
+
+    // console.log(m1.has(obj))
+
+    // m1.delete(info)
+    // m1.clear()
+    // m1.forEach(i => console.log(i))
+    // for (const i of m1) {
+    //   for (const m of i) {
+    //     console.log(m)
+    //   }
+    // }
+
+    // console.log(m1.size)
+    // console.log(m1)
+
+    // WeakMap
+    const wm = new WeakMap()
+    // wm.set(123)
+    wm.set(obj, 'aaa')
+    console.log(wm)
+  </script>
+</body>
+
+</html>

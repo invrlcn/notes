@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h4>0</h4>
+  <button id="add">+</button>
+  <button id="minus">-</button>
+  <script>
+    let counter = 100
+    // 获取元素
+    const num = document.querySelector('h4')
+    const add = document.querySelector('#add')
+    const minus = document.querySelector('#minus')
+    num.innerHTML = counter
+    // 监听事件
+    add.addEventListener('click', () => {
+      counter += 1
+      num.innerHTML = counter
+    })
+    minus.addEventListener('click', () => {
+      counter-=1
+      num.innerHTML =  counter
+    })
+  </script>
+</body>
+</html>

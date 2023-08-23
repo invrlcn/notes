@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function foo(name, age, height) {
+      // console.log(name, age, height)
+      return arguments
+    }
+    const f = foo('bob', 18, 1.88, 'aaa', 'bbb');
+    // console.log(f)
+    // console.log(f.length)
+    // console.log(f[2])
+    // f.forEach(item => console.log(item))
+
+    // arguments转成数组
+
+    // 1. for循环
+    // const newArr = []
+    // for (let i = 0; i < f.length; i++) {
+    //   newArr.push(f[i])
+    // }
+    // console.log(newArr)
+    // newArr.forEach(item => console.log(item))
+
+    // 2. slice()
+    // const a1 = ['abc', 'cba', 'cbd']
+    // const a2 = a1.slice(0, 2)
+    // console.log(a1, a2)
+
+    // const newArr = [].slice.apply(f)
+    // const newArr = Array.prototype.slice.apply(f)
+    // console.log(newArr)
+    // newArr.forEach(item => console.log(item))
+
+    // 3. Array.from()/ ...(rest) es6
+
+    // const newArr = Array.from(f)
+    // console.log(newArr)
+    // newArr.forEach(item => console.log(item))
+
+    // function bar(...args) {
+    //   return args
+    // }
+    // const b = bar('bob', 18, 1.88, 'aaa', 'bbb')
+    // console.log(b)
+    // b.forEach(item => console.log(item))
+
+  </script>
+</body>
+
+</html>

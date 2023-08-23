@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const obj = {
+      name: 'bob',
+      age: 18,
+      friend: {
+        name: 'tom',
+        age: 20
+      }
+    }
+    // localStorage.setItem('info', obj)
+    // const info = localStorage.getItem('info')
+    // console.log(info, typeof info)
+
+    // 序列化stringify()
+    // const newStr = JSON.stringify(obj)
+    // localStorage.setItem('info', newStr)
+    // const info = localStorage.getItem('info')
+    // console.log(info, typeof info)
+
+    // 反序列化parse()
+    // const newObj = JSON.parse(info)
+    // console.log(newObj)
+
+    // stringify和parse的其他参数
+    // stringify(value:any, replacer?:(key, value)=> {}, space?:string | number)
+    const newStr = JSON.stringify(obj, function (key, value) {
+      // if (key === 'name') {
+      //   value = 'invr'
+      // }
+      // return value
+      if (key === 'name') value = 'invr'
+      return value
+    }, 4)
+    // console.log(newStr)
+
+    // parse(text:string, reviver?:(key, value)=>{})
+    const newObj = JSON.parse(newStr, (key, value) => {
+      if (key === 'age') {
+        value = 30
+      }
+      return value
+    })
+    console.log(newObj)
+
+  </script>
+</body>
+
+</html>

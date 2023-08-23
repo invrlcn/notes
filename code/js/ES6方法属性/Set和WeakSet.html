@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const s1 = new Set()
+    // set属性和方法
+
+    s1.add('aa')
+    s1.add(1234)
+    s1.add(1234)
+    s1.add({ name: 'bob' })
+    s1.add(['abc', 'bna'])
+
+    // console.log(s1.has('aa'))  // true
+    // console.log(s1.has('aaa'))  // false
+
+    s1.delete(1234)
+
+    // s1.clear()
+
+    // s1.forEach(i => console.log(i))
+    // for (const i of s1) {
+    //   console.log(i)
+    // }
+
+    // console.log(s1)
+    // console.log(s1.size)
+
+
+    // WeakSet(): 只接受引用类型参数,弱引用,可以被GC回收
+    const ws = new WeakSet()
+    // ws.add(123)
+    // ws.add('aaa')
+    const obj = { age: 18 }
+    ws.add(obj)
+    ws.add({ name: 'bob' })
+    ws.add(['abc', 'cba'])
+
+    // console.log(ws.has(obj))
+    // ws.delete(obj)
+    // console.log(ws)
+
+    // WeakSwt()应用
+    const ws1 = new WeakSet()
+    class Run {
+      constructor() {
+        ws1.add(this)
+      }
+      run() {
+        if (!ws1.has(this)) throw ('不能通过其他对象调用run')
+        console.log('running')
+      }
+    }
+    const r = new Run()
+    r.run()
+
+    const info = {
+      r1: new Run()
+    }
+    info.r1()
+  </script>
+</body>
+
+</html>

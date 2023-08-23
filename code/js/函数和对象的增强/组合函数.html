@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function foo(m) {
+      return m + 2
+    }
+    function bar(m) {
+      return m ** 2
+    }
+    // const f = foo(2)
+    // const b = bar(2)
+    // console.log(f)
+    // console.log(b)
+
+    function compose(fn1, fn2) {
+      return function (m) {
+        return fn1(fn2(m))
+      }
+    }
+    const c = compose(foo, bar)
+    console.log(c(2))
+  </script>
+</body>
+
+</html>

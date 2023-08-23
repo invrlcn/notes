@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const obj = {
+      name: 'bob',
+      age: 18,
+      height: 1.88
+    }
+    // console.log(obj)
+    // console.log(obj.__proto__)
+    // console.log(Object.getPrototypeOf(obj))
+    // console.log(obj.__proto__ === Object.getPrototypeOf(obj))
+
+    function Foo() {
+
+    }
+    const f1 = new Foo()
+    // console.log(Foo.prototype)
+    // console.log(f1.__proto__)
+    // console.log(f1.__proto__ === Foo.prototype)
+    // console.log(f1.__proto__.constructor.name)
+    // console.log(f1.__proto__.constructor === Foo)
+
+    Foo.prototype.name = 'tom'
+    // f1.__proto__.age = 18
+    // Object.setPrototypeOf(f1, {
+    //   name: 'mary',
+    //   height: 1.66,
+    //   address: '杭州市'
+    // })
+    // console.log(f1.name)
+    // console.log(f1.height)
+    // console.log(f1.address)
+
+    // 重写原型对象(实例对象中的constructor会指向Object)  const obj = new Object()
+    // Foo.prototype.age = 18
+    // Foo.prototype.address = '杭州市'
+    // Foo.prototype.running = function () {
+    //   console.log('running')
+    // }
+
+    Foo.prototype = {
+      name: 'tom',
+      age: 18,
+      address: '杭州市',
+      // constructor: Foo,
+      running() {
+        console.log('running')
+      }
+    }
+
+    const f2 = new Foo()
+
+    Object.defineProperty(Foo.prototype, 'constructor', {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: Foo
+    })
+    // console.log(f2.name)
+    // console.log(f2.address)
+    // f2.running()
+    console.log(f2.__proto__.constructor.name)
+    // console.log(f2.__proto__.constructor === Object.prototype.constructor)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const obj = {
+      name: 'bob',
+      age: 18,
+      friends: {
+        name: 'tom',
+        age: 20
+      }
+    }
+    // 方式一
+    // const info = { ...obj }
+
+    // 方式二
+    // 方式二
+    const info = Object.assign({}, obj)
+
+    info.name = 'mary'
+    // console.log(info.name)
+    // console.log(obj.name)
+    info.friends.age = 30
+    // console.log(info.friends.age)
+    // console.log(obj.friends.age)
+  </script>
+</body>
+
+</html>

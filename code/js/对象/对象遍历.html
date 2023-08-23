@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const obj = {
+      nikeName: 'invrLcn',
+      age: 27,
+      height: 1.66,
+      address: '杭州市',
+      study: function () {
+        console.log('study javascript')
+      }
+    }
+    // console.log(obj.address)
+    // console.log(obj['height'])
+
+    // Object.keys()
+    // const objKeys = Object.keys(obj)
+    // for (let i = 0; i < objKeys.length; i++) {
+    //   const itemKey = objKeys[i]
+    //   const itemValue = obj[itemKey]
+    //   console.log(`key: ${itemKey}, value: ${itemValue}`)
+    // }
+
+    // for... in 
+    for (let key in obj) {
+      const value = obj[key]
+      console.log(`key: ${key}, value: ${value}`)
+    }
+
+    // for..of{默认不可遍历对象,遍历可迭代的对象}
+    // for (let key of obj) {
+    //   const value = obj[key]
+    //   console.log(`key: ${key}, value: ${value}`)
+    // }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="box1" onclick="console.log('点击了bxo1')">哈哈哈</div>
+  <div class="box2">呵呵呵</div>
+  <div class="box3">嘻嘻嘻</div>
+
+  <form action="/abc">
+    <input type="text" name="nikeName">
+    <textarea name="content" id="" cols="30" rows="10"></textarea>
+    <button type="submit" class="sub">提交</button>
+    <button type="reset">重置</button>
+  </form>
+
+  <script>
+    // 1. 事件监听方式(三种):
+    const box2 = document.querySelector('.box2')
+    const box3 = document.querySelector('.box3')
+    box2.onclick = function () {
+      console.log('点击了box2')
+    }
+    box3.addEventListener('click', function () {
+      console.log('点击了box3')
+
+    })
+
+    // 2. 常见事件
+    /**
+     * 鼠标事件:
+     * 
+     * 2.1 click: 点击事件
+     * 
+     * 2.2 scroll: 滚动事件
+     * 
+     * 2.3 mouseover/mouseout: 鼠标移入/离开事件 (支持冒泡)
+     * 
+     * 2.4 mouseenter/mouseleave: 鼠标移上/移出元素事件(不支持冒泡)
+     * 
+     * 2.5 mousedown/mouseup:鼠标按下/松开事件
+     * 
+     * 2.6 dblclick: 鼠标双击事件
+     * 
+     * 2.7 contextmenu: 鼠标右键打开菜单触发
+     * 
+     * 键盘事件:
+     * 
+     * 2.8 onkeydown/onkeyup: 键盘按下/松开事件
+     * 
+     * 2.9 onkeypress: 键盘按键被按下(inout输入)
+     * 
+     * 表单(form)事件: 
+     * 
+     * 2.10 submit: 提交form时
+     * 
+     * 2.11 focus: 聚焦
+     * 
+     * 2.12 blur: 失焦
+     * 
+     * 2.13 reset: 表单重置
+     * 
+     * 2.14 change: 内容改变
+     * 
+     * 2.15 input: 输入内容
+     * 
+     * Document事件:
+     * 
+     * 2.16 DOMContentLoaded: 当 HTML 的加载和处理均完成，DOM 被完全构建完成时(不包含外部引入文件)
+     * 
+     * 2.17 load: 页面完全加载完毕
+     * 
+     * css事件: 
+     * 
+     * 2.13 transitionend: 当一个 CSS 动画完成时
+     * 
+     * **/
+
+
+    const inpEl = document.querySelector('input')
+    const btnEl = document.querySelector('.sub')
+
+    btnEl.addEventListener('click', function (e) {
+      e.preventDefault()
+      // console.log(inpEl.value)
+    })
+    document.addEventListener('keydown', function (e) {
+      if (e.code === 'KeyS') {
+        inpEl.focus()
+      }
+    })
+  </script>
+</body>
+
+</html>

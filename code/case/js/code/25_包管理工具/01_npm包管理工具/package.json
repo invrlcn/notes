@@ -1,0 +1,19 @@
+{
+  "name": "npm",
+  "version": "1.0.0",
+  "description": "a npm test ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lcn": "node ./scripts/index.js"
+  },
+  "author": "invrlcn",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "vue": "^2.6.14"
+  },
+  "devDependencies": {
+    "react": "^17.0.2"
+  }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .div {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+  }
+  .div2 {
+    width: 200px;
+    height: 200px;
+    background-color: greenyellow;
+    margin-top: 20px;
+  }
+</style>
+<body>
+  <div id="app"></div>
+  <template id="lcn">
+    <!-- .stop - 调用 event.stopPropagation() -->
+    <div @click="btn1">
+      <button @click.stop="btn2">点击</button>
+    </div>
+    <!-- .prevent - 调用 event.preventDefault()。 -->
+    <a @click.prevent href="http:www.baidu.com">跳转</a>
+
+    <!-- .enter -->
+    <input type="text" @keyup.enter="enterKeyup">
+
+  </template>
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.createApp({
+      template: "#lcn",
+      data() {
+        return {
+          counter: 100
+        }
+      },
+      methods: {
+        btn1(event) {
+          console.log("div被触发", event)
+        },
+        btn2(event) {
+          console.log("btn被触发", event)
+        },
+        enterKeyup(event) {
+          console.log("keyup", event.target.value)
+        }
+      }
+    }).mount("#app")
+  </script>
+</body>
+</html>

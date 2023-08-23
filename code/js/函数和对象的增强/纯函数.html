@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 纯函数:
+     * 1. 相同的输入产出相同的输出
+     * 2.不能产生副作用
+     * 
+     * **/
+    function foo(n, m) {
+      return n + m
+    }
+    console.log(
+      foo(10, 20)
+    )
+    console.log(
+      foo(30, 40)
+    )
+    console.log(foo('aa', 'bb'))  // 不行
+
+    // 案例
+    const arr = ['abc', 'cba', 'nba', 'mba']
+    // const newArr1 = arr.slice(0, 2)
+    const newArr2 = arr.splice(0, 2)
+    // console.log(newArr1, arr)
+    console.log(newArr2, arr)
+
+    slice() // 不改变原数组, 是纯函数
+    splice()  // 改变原数组, 不是纯函数
+  </script>
+</body>
+
+</html>

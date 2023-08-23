@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          msg: 'hello, react'
+        }
+      }
+      changeText() {
+        this.setState({
+          msg: 'hello, world'
+        })
+      }
+
+      render() {
+        const { msg } = this.state
+
+        // 书写规范
+        // 1.jsx结构中只能有一个根元素
+        // 2.jsx结构通常会包裹一个(), 将整个jsx当做一个整体, 实现换行
+        // 3.jsx可以是单标签, 也可以双标签, 但是单标签必须以/>结尾
+
+        return (
+          <div>
+            {/*jsx注释*/}
+            <h2>{msg}</h2>
+            <button onClick={this.changeText.bind(this)}>切换</button>
+          </div>
+        )
+      }
+    }
+
+
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<App />)
+  </script>
+</body>
+
+</html>

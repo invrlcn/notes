@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <template id="lcn">
+    <h2>{{firstName + " " + lastName}}</h2>
+    <h2>{{score >= 60 ? "及格" : "不及格"}}</h2>
+    <h2>{{msg.split(" ").reverse().join(" ")}}</h2>
+  </template>
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.createApp({
+      template: "#lcn",
+      data() {
+        return {
+          firstName: 'bob',
+          lastName: 'tom',
+          score: 80,
+          msg: 'Hello, World'
+        }
+      }
+    }).mount("#app")
+  </script>
+</body>
+</html>

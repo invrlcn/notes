@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1. Math.pow()
+    // const res = Math.pow(2, 3)
+    // console.log(res)
+
+    // 2. for循环
+    // function pow (a, n) {
+    //   let res = 1
+    //   for (let i = 0; i < n; i++) {
+    //     res *= a
+    //   }
+    //   return res
+    // }
+    // console.log(pow(3, 3))
+    // 3. 递归 (数学: a ** n = a * a ** n-1)
+    function pow(a, n) {
+      return a * pow(n - 1)
+      if (n == 1) return a
+    }
+    console.log(pow(3, 2))
+  </script> 
+</body>
+
+</html>

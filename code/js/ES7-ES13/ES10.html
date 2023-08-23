@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1. flat() 会按照一个可指定的深度递归遍历数组，并将所有元素与遍历到的子数组中的元素合并为一个新数组返回
+    const arr = ['aa', 'bb', ['cc', 'dd'], [['ee', 'ff'], 'gg']]
+    // const res1 = arr.flat(1)
+    // const res2 = arr.flat(2)
+    // console.log(res1)
+    // console.log(res2)
+
+    // 2. flatMap() 首先使用映射函数映射每个元素，然后将结果压缩成一个新数组
+    /**
+     * 注意一：flatMap是先进行map操作，再做flat的操作
+     * 注意二：flatMap中的flat相当于深度为1
+     * **/
+    // const res1 = arr.map(i => i + 'lcn').flat(1)
+    // console.log(res1)
+    // const res2 = arr.flatMap(i => i + 'lcn')
+    // console.log(res2)
+
+    // 3. Object.fromEntries()
+    // const obj = {
+    //   name: 'bob',
+    //   age: 18,
+    //   address: '杭州市'
+    // }
+    // const res1 = Object.entries(obj)
+    // console.log(res1)
+    // const res2 = Object.fromEntries(res1)
+    // console.log(res2)
+
+    // 4. trimStart trimEnd(去除首尾空格)
+    const str = '   hello,       world    '
+    console.log(str.trim())
+    console.log(str.trimStart())
+    console.log(str.trimEnd())
+  </script>
+</body>
+
+</html>

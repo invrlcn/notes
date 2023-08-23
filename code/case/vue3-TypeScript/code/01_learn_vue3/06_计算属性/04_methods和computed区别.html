@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <template id="lcn">
+    <h2>{{msgFn()}}</h2>
+    <h2>{{msgFn()}}</h2>
+    <h2>{{msgFn()}}</h2>
+    <hr>
+    <h2>{{msgPr}}</h2>
+    <h2>{{msgPr}}</h2>
+    <h2>{{msgPr}}</h2>
+    <button @click="btnClick">修改</button>
+  </template>
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.createApp({
+      template: "#lcn",
+      data() {
+        return {
+          msg: "Hello, World"
+        }
+      },
+      // 计算属性是有缓存的, 当我们多次使用计算属性时, 计算属性中的运算只会执行一次.
+      // 计算属性会随着依赖的数据(msg)的改变, 而进行重新计算.
+      computed: {
+        msgPr(value) {
+          console.log('执行了computed', 'value:', value)
+          return this.msg
+        }
+      },
+      methods: {
+        msgFn() {
+          console.log('执行了methods')
+          return this.msg
+        },
+        btnClick() {
+          this.msg = 'Invr, Lcn'
+        }
+      }
+    }).mount("#app")
+  </script>
+</body>
+</html>

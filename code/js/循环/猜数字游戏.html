@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <head name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猜数字游戏</title>
+  </head>
+
+<body>
+  <script>
+
+    const randomNum = Math.floor(Math.random() * 100)
+    alert(randomNum)
+    // let isSuccess = false
+    for (let i = 0; i < 3; i++) {
+      const resultNum = Number(prompt('请输入数字'))
+      if (resultNum === randomNum) {
+        // isSuccess = true
+        alert('恭喜您,猜对了!')
+        break
+      } else if (resultNum > randomNum) {
+        alert('猜大了!')
+      } else {
+        alert('猜小了!')
+      }
+      if (i === 2) {
+        alert('您的次数用完了, 您失败了!')
+      }
+    }
+    // if (!isSuccess) {
+    //   alert('您的次数已用完!')
+    // }
+  </script>
+</body>
+
+</html>

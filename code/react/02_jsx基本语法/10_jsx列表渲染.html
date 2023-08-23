@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    ul li {
+      list-style: none;
+    }
+
+    li {
+      margin-top: 10px;
+      border: 1px solid #c2c2c2;
+      padding: 0 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          infos: [
+            {
+              id: 101,
+              name: 'bob',
+              age: 18
+            },
+            {
+              id: 102,
+              name: 'tom',
+              age: 25
+            },
+            {
+              id: 103,
+              name: 'mary',
+              age: 30
+            },
+            {
+              id: 104,
+              name: 'lcn',
+              age: 40
+            }
+          ]
+        }
+      }
+
+      render() {
+        const { infos } = this.state
+        const filterMap = infos.filter(i => i.age > 28)
+        // const reduceMap = infos.reduce((pre, item, index, arr) => {
+        //   return pre + item.age
+        // }, 0)
+        return (
+          <div>
+            {/*
+            <ul>
+              {infos.map(i => <li key={i.id}>
+                <h2>{i.name}</h2>
+                <h3>{i.age}</h3>
+              </li>)}
+            </ul>
+            
+            */}
+
+            {/*显示年龄大于28的列表*/}
+            {/*
+           <ul>
+              {filterMap.map(i => <li key={i.id}>
+                <h2>{i.name}</h2>
+                <h3>{i.age}</h3>
+              </li>)}
+            </ul>
+          
+          */}
+
+            {/*显示年龄大于20的年龄和的列表*/}
+            <ul>
+              <h2>{infos.map(i => i.age).filter(i => i > 20).reduce((pre, i) => pre + i)}</h2>
+            </ul>
+          </div>
+        )
+      }
+    }
+
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<App />)
+  </script>
+</body>
+
+</html>

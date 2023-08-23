@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /**
+    * 默认情况下:
+    * 函数的显示原型对象的隐式原型指向Object.prototype
+    * 函数的隐式原型指向Function.prototype
+    * 
+    * **/
+    function Foo() { }
+    const f = new Foo()
+    console.log(Foo.prototype.__proto__ === Object.prototype)
+    console.log(Foo.__proto__ === Function.prototype)
+    console.log(f.__proto__ === Foo.prototype)
+  </script>
+</body>
+
+</html>

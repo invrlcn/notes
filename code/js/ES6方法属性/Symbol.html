@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // Symbol()创建一个独一无二的对象
+    const s1 = Symbol()
+    const s2 = Symbol()
+    // console.log(s1 === s2)  // false
+
+    const info = { height: 1.88 }
+    const obj = {
+      name: 'bob',
+      age: 18,
+      [info]: 'aaa',
+      [s1]: 'bb'
+    }
+    // console.log(obj)
+    // console.log(typeof obj[info])  // String
+    const res = Object.getOwnPropertySymbols(obj)
+    console.log(res)
+    // 获取Symbol值
+    // 1.
+    // for(const s of res) {
+    //   console.log(obj[s])
+    // }
+
+    // 2.description
+
+
+    // const s3 = Symbol('aaa')
+    // const s4 = Symbol('bbb')
+    // console.log(s3.description)
+    // console.log(s4.description)
+
+    // Symbol.for()创建相同的Symbol(传入相同的描述)
+
+    const s3 = Symbol('bbb')
+    const des = s3.description
+    const s4 = Symbol.for(des)
+    const s5 = Symbol.for(des)
+    console.log(s4 === s5)  // true
+
+    // 可以通过Symbol.keyFor()获取key
+    console.log(Symbol.keyFor(s4))
+    console.log(Symbol.keyFor(s5))
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  ul,
+  li {
+    list-style: none;
+  }
+</style>
+
+<body>
+  <ul>
+    <li></li>
+  </ul>
+
+  <script>
+    const arr = ['bob感兴趣', 'tom感兴趣', 'marry感兴趣']
+    const ulEl = document.querySelector('ul')
+    const liEl = document.querySelector('li')
+    let index = 0
+    setInterval(() => {
+      // console.log(index)
+      liEl.textContent = arr[index]
+      index++
+      if (index === arr.length) index = 0
+    }, 1000);
+  </script>
+</body>
+
+</html>

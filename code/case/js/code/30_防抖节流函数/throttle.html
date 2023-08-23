@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text">
+  <button>取消</button>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
+  <!-- <script src="./06_throttle基本实现.js"></script> -->
+  <!-- <script src="./07_throttle-leading的实现.js"></script> -->
+  <!-- <script src="./08_throttle-traling的实现 .js"></script> -->
+  <!-- <script src="./09_throttle-取消功能.js"></script> -->
+  <!-- <script src="./10_throttle-函数返回值一.js"></script> -->
+  <script src="./11_throttle-函数返回值二.js"></script>
+  <script>
+    const btn = document.querySelector('input')
+    const cancelBtn = document.querySelector('button')
+    let  counter = 0
+    const inputChange = function(event) {
+      console.log(`发送了第${++counter}次网络请求`, this, event)
+      return 'aaaa'
+    }
+
+    // 节流处理(按一定时间间隔依次执行，期间再次触发不会执行)
+    // 借用underscore
+    // btn.oninput = _.throttle(inputChange, 2000)
+    // 自己实现
+    // const throttle = cnThrottle(inputChange, 3000, {
+    //   leading: false,
+    //   traling: false,
+    //   resultCallback: (res) => {
+    //     console.log('callback返回值:', res)
+    //   } 
+    // })
+    const throttle = cnThrottle(inputChange, 3000, {
+      leading: false,
+      traling: false
+    })
+
+    const resultPromise = (...args) => {
+      throttle.apply(btn, args).then(res => {
+        console.log('resultPromise返回值', res)
+      })
+    }
+    // btn.oninput = throttle
+    btn.oninput = resultPromise
+    
+
+    // 取消
+    cancelBtn.onclick = function() {
+      throttle.cancel()
+    }
+  </script>
+</body>
+</html>

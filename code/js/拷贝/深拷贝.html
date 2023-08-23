@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    // 判断是不是一个对象类型
+    function isObject(value) {
+      const valueType = typeof value
+      return (value !== null) && (valueType === 'object' || valueType === 'function')
+    }
+    // console.log(isObject(123))
+    // console.log(isObject('asd'))
+    // console.log(isObject(null))
+    // console.log(isObject({ name: 'aaa' }))
+    // console.log(isObject([1, 2, 3]))
+    // console.log(isObject(function () { }))
+
+    function deepClone(orangeValue) {
+      // 1. 如果是原始类型直接返回
+      if (!isObject(orangeValue)) return orangeValue
+      // 2. 如果是对象类型,创建对象
+      const newObj = Array.isArray(orangeValue) ? [] : {}
+      for (const key in orangeValue) {
+        newObj[key] = deepClone(orangeValue[key])
+      }
+      return newObj
+    }
+
+    const obj = {
+      name: 'bob',
+      age: 18,
+      friends: {
+        name: 'tom',
+        age: 20
+      }
+    }
+
+    const books = [
+      { name: "黄金时代", price: 28, desc: { intro: "这本书不错", info: "这本书讲了一个很有意思的故事" } },
+      { name: "你不知道JavaScript", price: 99 },
+    ]
+
+    // const newData = deepClone(obj)
+    // newData.friends.age = 30
+    // console.log(newData.friends.age)
+    // console.log(obj.friends.age)
+
+    const newData = deepClone(books)
+    console.log(newData)
+  </script>
+</body>
+
+</html>

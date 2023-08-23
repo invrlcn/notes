@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .box {
+    margin: 20px auto;
+    width: 200px;
+    height: 200px;
+    background-color: orange;
+  }
+
+  .contain {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+  }
+
+  .btn {
+    width: 50px;
+    height: 20px;
+    background-color: green;
+  }
+</style>
+
+<body>
+  <div class="box">box
+    <div class="contain">
+      container
+      <div class="btn">btn</div>
+    </div>
+  </div>
+  <a href="http://www.baidu.com">百度一下</a>
+
+  <script>
+    const boxEl = document.querySelector('.box')
+    const containerEl = document.querySelector('.contain')
+    const btnEl = document.querySelector('.btn')
+    const aEl = document.querySelector('a')
+
+    boxEl.addEventListener('click', function (event) {
+      console.log('点击了btn, 冒泡')
+      // console.log(event.type)  // 事件类型
+      // console.log(event.offsetX, event.offsetY)  // 事件发生的位置
+      // console.log(event.clientX, event.clientY)  // 事件发生在客户端内的位置
+      // console.log(event.screenX, event.screenY)  // 事件发生相对于屏幕的位置
+      // console.log(event.pageX, event.pageY)  // 事件发生在客户端相对于document的位置
+      console.log(event.target)  // 事件触发的位置
+      console.log(event.currentTarget)  // 处理事件的元素
+      console.log(event.target === event.currentTarget)
+      event.stopPropagation()
+    })
+    containerEl.addEventListener('click', function (event) {
+      // console.log('点击了contain, 冒泡')
+      console.log(event.currentTarget)
+      console.log(this)
+      console.log(this === event.currentTarget)
+    })
+
+    aEl.addEventListener('click', (event) => {
+      console.log('百度一下')
+      event.preventDefault()
+
+
+    })
+  </script>
+</body>
+
+</html>

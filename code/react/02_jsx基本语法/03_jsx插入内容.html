@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          num: 100,
+          movies: ["大话西游", "星际穿越", "盗梦空间"],
+          msg: 'hello, react',
+          objName: {
+            firstName: 'tom',
+            lastName: 'bob'
+          },
+          age: 18,
+        }
+      }
+
+      render() {
+        // 1.插入标识符
+        const { msg, movies, num, objName, age } = this.state
+        // 2.对内容进行运算后显示(插入表示)
+        const fulName = objName.firstName + objName.lastName
+        const flag = age >= 18 ? '成年人' : '未成年'
+        const lis = movies.map(movie => <li key={movie}>{movie}</li>)
+
+        function fulNameFn() {
+          return objName.firstName + objName.lastName
+        }
+
+        return (
+          <div>
+            {/* 1.Number/String/Array直接显示出来 */}
+            <h2>{msg}</h2>
+            <h2>{num}</h2>
+            <h2>{movies.join(' ')}</h2>
+
+            <h2>{fulName}</h2>
+            <h2>{flag}</h2>
+            <h2>{lis}</h2>
+
+            {/* 2.undefined/null/Boolean  默认不显示  可以转成string显示*/}
+            <h2>{undefined + ''}</h2>
+            <h2>{String(null)}</h2>
+            <h2>{true.toString()}</h2>
+
+            {/* 3.Object类型不能作为子元素进行显示*/}
+            <h2>{objName.firstName}</h2>
+            <h2>{Object.keys(objName).join(' ')}</h2>
+
+            {/* 4.可以插入对应的表达式*/}
+            <h2>{10 + 20}</h2>
+            <h2>{objName.firstName + objName.lastName}</h2>
+
+            {/* 5.可以插入三元运算符*/}
+            <h2>{age >= 18 ? '成年人' : '未成年'}</h2>
+
+            {/* 6.可以调用方法获取结果*/}
+            <h2>{fulNameFn()}</h2>
+          </div>
+        )
+      }
+    }
+
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<App />)
+  </script>
+</body>
+
+</html>

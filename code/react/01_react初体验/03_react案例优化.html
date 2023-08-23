@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // 使用组件进行重构代码
+    // 类组件
+
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          msg: 'hello, world'
+        }
+        // this.changeText = this.changeText.bind(this)   // 通过bind()绑定实例对象this
+      }
+
+      // 组件实例方法
+      changeText() {
+        console.log(this)
+        this.setState({
+          msg: 'hello, react'
+        })
+      }
+
+      // 渲染函数方法
+      render() {
+        return (
+          <div>
+            <h2>{this.state.msg}</h2>
+            {/*<button onClick={this.changeText}>切换</button>*/}
+            <button onClick={this.changeText.bind(this)}>切换</button>
+          </div>
+        )
+      }
+    }
+
+    // 将组件渲染到界面上
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<App />)
+  </script>
+</body>
+
+</html>

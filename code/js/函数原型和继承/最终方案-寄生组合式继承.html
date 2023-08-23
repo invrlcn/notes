@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Person(name, age, address) {
+      this.name = name
+      this.age = age
+      this.address = address
+    }
+    Person.prototype.eating = function () {
+      console.log('eating')
+    }
+    Person.prototype.running = function () {
+      console.log('running')
+    }
+
+    function Student(name, age, address, sno) {
+      // this.name = name
+      // this.age = age
+      // this.address = address
+      this.sno = sno
+
+      // 借用构造函数实现属性继承
+      Person.call(this, name, age, address)
+    }
+
+    // 原型链实现方法继承
+    // const p = new Person()
+    // Student.prototype = p
+
+    // 原型式
+
+    // 1. 
+    // const obj = {}
+    // obj.__proto__ = Person.prototype
+    // Object.setPrototypeOf(obj, Person.prototype)
+    // Student.prototype = obj
+
+    // 2. 
+    // const o = Object.create(Person.prototype)
+    // Student.prototype = o
+
+    // 3. 
+    // function createObj(o) {
+    //   function Foo() { }
+    //   Foo.prototype = o
+    //   return new Foo()
+    // }
+
+    // 寄生式
+    // function inherit(subClass, superClass) {
+    //   return c = createObj(superClass.prototype)
+    //   subClass.prototype = c
+    // }
+
+    // 寄生组合式
+    function createObj(o) {
+      function Foo() { }
+      Foo.prototype = o
+      return new Foo()
+    }
+    function inherit(subClass, superClass) {
+      subClass.prototype = createObj(superClass.prototype)
+      Object.defineProperty(subClass.prototype, 'constructor', {
+        configurable: true,
+        value: subClass
+      })
+    }
+    inherit(Student, Person)
+
+
+    Student.prototype.studying = function () {
+      console.log('studying')
+    }
+
+    const p1 = new Person('bob', 30, '杭州市')
+    // console.log(p1)
+    // p1.eating()
+    // p1.running()
+
+    const s1 = new Student('tom', 18, '上海市', 90)
+    // console.log(Student.prototype)
+    console.log(s1)
+    s1.eating()
+    s1.running()
+    s1.studying()
+
+  </script>
+</body>
+
+</html>

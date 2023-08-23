@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>99乘法表</title>
+  </meta>
+  <style>
+    div {
+      color: #00f;
+    }
+
+    table {
+      border-collapse: collapse;
+      color: #f00;
+
+    }
+
+    td {
+      border: 1px solid #00f;
+      padding: 6px 16px;
+    }
+  </style>
+
+<body>
+  <script>
+
+    // for (let i = 0; i < 6; i++) {
+    //   document.write('<div>')
+    //   for (let j = 0; j < 6; j++) {
+    //     document.write('※ ')
+    //   }
+    //   document.write('</div>')
+    // }
+
+    // for (let i = 0; i < 6; i++) {
+    //   document.write('<div>')
+    //   for (let j = 0; j < i+ 1; j++) {
+    //     document.write('※ ')
+    //   }
+    //   document.write('</div>')
+    // }
+    document.write('<table>')
+    for (let i = 0; i < 9; i++) {
+      document.write('<tr>')
+      for (let j = 0; j < i + 1; j++) {
+        document.write('<td>')
+        document.write(`${j + 1} * ${i + 1} = ${(i + 1) * (j + 1)} `)
+        document.write('</td>')
+      }
+      document.write('</td>')
+    }
+    document.write('</table>')
+  </script>
+</body>
+
+</html>

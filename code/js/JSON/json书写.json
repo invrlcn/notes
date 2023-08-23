@@ -1,0 +1,19 @@
+12123
+
+null
+
+true
+
+
+{
+  "name": "bob",
+  "age": 18
+}
+
+[
+  123,
+  false,
+  {
+    "height": 1.88
+  }
+]

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    console.log(new Date())
+    // 获取
+    const date = new Date()
+    // const date = new Date(1000)
+    // const date = new Date('2032/3/3')
+    // 年
+    const year = date.getFullYear()
+    console.log(year)
+
+    // 月
+    const month = date.getMonth() + 1
+    console.log(month)
+
+    // 日
+    const day = date.getDate()
+    console.log(day)
+
+    // 时
+    const hours = date.getHours()
+    console.log(hours)
+
+    // 分
+    const minutes = date.getMinutes()
+    console.log(minutes)
+
+    // 秒
+    const second = date.getSeconds()
+    console.log(second)
+
+    // 毫秒
+    const millisecond = date.getMilliseconds()
+    console.log(millisecond)
+
+    // 星期
+    const weekDay = date.getDay()
+    console.log(weekDay)
+
+    // 设置
+    // 年
+    const y = date.setFullYear(2023, 2, 31)
+    console.log(y)
+
+    // 月
+    const m = date.setMonth(3, 18)
+    console.log(m)
+
+    // 日
+    const d = date.setDate(21)
+    console.log(d)
+
+    // 时
+    const h = date.setHours(18, 23, 43, 33)
+    console.log(h)
+
+    // 分
+    const min = date.setMinutes(21, 32, 43)
+    console.log(min)
+
+    // 秒
+    const s = date.setSeconds(32, 43)
+    console.log(s)
+
+    // 毫秒
+    const ms = date.setMilliseconds(43)
+    console.log(ms)
+
+
+    const wd = date.setTime(23)
+    console.log(wd)
+
+    // 获取时间戳(Unix)
+
+    // 1. 
+    console.log(new Date().getTime())
+
+    // 2. 
+    console.log(new Date().valueOf())
+
+    // 3. 
+    console.log(+new Date())
+
+    // 4. 
+    console.log(Date.now())
+
+
+    // Date.parse(str) 方法可以从一个字符串中读取日期，并且输出对应的Unix时间戳
+     console.log(Date.parse('2023-3-21 12:32:32:43'))
+  </script>
+</body>
+
+</html>

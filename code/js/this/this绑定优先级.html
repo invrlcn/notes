@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function foo() {
+      console.log(this)
+    }
+    const obj = {
+      name: 'bob',
+      foo
+    }
+    // obj.foo()  // 隐式绑定高于默认绑定
+
+    // foo.call('aaa')
+    // foo.apply('bbb')
+    // const bar = foo.bind('ccc')
+    // bar()   // 显示绑定高于默认绑定
+
+    // obj.foo.call('aaa')
+    // obj.foo.apply('bbb')
+    // const bar = obj.foo.bind('ccc')
+    // bar()  // 显示绑定高于隐式绑定
+
+    // const info = {
+    //   name: 'tom',
+    //   bar: function () {
+    //     console.log(this)
+    //     console.log(this === info)
+    //   }
+    // }
+    // new info.bar()  // new绑定高于隐式绑定
+
+
+    const bar = foo.bind('aaa')
+    new bar()  // new绑定高于显示绑定(bind) new不能和call/apply同时使用
+
+  </script>
+</body>
+
+</html>

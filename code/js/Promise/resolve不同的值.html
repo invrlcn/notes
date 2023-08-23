@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const promise = new Promise((resolve, reject) => {
+      // 1. 普通值
+      // resolve([
+      //   {
+      //     name: 'bob',
+      //     age: 18
+      //   },
+      //   {
+      //     address: '杭州市',
+      //     run() {
+      //       console.log('running')
+      //     }
+      //   }
+      // ])
+
+      // 2. 传入一个新的Promise,返回值由新的Promise决定
+      // resolve(new Promise((resolve, reject) => {
+      //   // resolve('新的Promise')
+      //   // reject('新的Promise')
+      // }))
+
+      // 3. 传入一个对象,实现了then方法:即thenable
+      resolve({
+        name: 'bob',
+        then(resolve, reject) {
+          resolve('then方法')
+          // reject('then方法')
+        }
+      })
+    })
+
+    promise.then(res => {
+      console.log('res:', res)
+    }).catch(err => {
+      console.log('err:', err)
+    })
+  </script>
+</body>
+
+</html>

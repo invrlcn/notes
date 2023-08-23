@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" class="inp">
+  <script>
+
+    function cnThrottle(execFn, interval) {
+      let startTime = 0
+      const _throttle = function (...args) {
+        const nowTime = new Date().getTime()
+        const waitTime = interval - (nowTime - startTime)
+        if (waitTime <= 0) {
+          execFn.call(this, ...args)
+          startTime = nowTime
+        }
+      }
+      return _throttle
+    }
+
+
+    const inpEl = document.querySelector('.inp')
+    let index = 1
+    // inpEl.oninput = function () {
+    //   console.log(`请求次数${index++}`, this.value)
+    // }
+    inpEl.oninput = cnThrottle(function () {
+      console.log(`请求次数${index++}`, this.value)
+    }, 3000) 
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button class="btn1">点击1</button>
+  <button class="btn2">点击2</button>
+  <script>
+    // 属性
+    console.log(history.length)
+    console.log(history.state)
+
+    // 方法
+    window.open('http://www.baidu.com')
+    const btn1El = document.querySelector('.btn1')
+    const btnEl = document.querySelector('.btn2')
+
+    btn1El.addEventListener('click', () => {
+      window.open('../page.html')
+    })
+    btnEl.addEventListener('click', () => {
+      // history.back()
+      // history.forward()
+      // history.go(1)
+      // history.go(-1)
+      // history.pushState(null, null, '../page.html')
+      history.replaceState(null, null, '../page.html')
+    })
+
+  </script>
+</body>
+
+</html>

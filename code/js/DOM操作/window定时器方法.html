@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<button>停止定时器</button>
+
+<body>
+  <script>
+    const btnEl = document.querySelector('button')
+    let timerId = null
+
+    // timerId = setTimeout((name, age) => {
+    //   console.log('setTimeout执行', name, age)
+    // }, 3000, ['bob', 18], 20);
+
+    timerId = setInterval((name, age) => {
+      console.log('setInterval执行', name, age)
+    }, 1000, ['bob', 18], 20);
+
+    btnEl.addEventListener('click', function () {
+      clearTimeout(timerId)
+      // clearInterval(timerId)
+    })
+  </script>
+</body>
+
+</html>

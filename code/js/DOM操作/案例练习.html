@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="../utils/formatDate.js"></script>
+  <script>
+    // 练习一：通过prompt接收用户的输入，根据输入创建一个列表
+    // const h2El = document.createElement('h2')
+    // h2El.textContent = '动态创建列表'
+    // document.body.append(h2El)
+    // let listName = ''
+    // do {
+    //   listName = prompt('请输入列表名称:')
+    //   const liEl = document.createElement('li')
+    //   liEl.textContent = listName
+    //   listName && document.body.append(liEl)
+    // } while (listName)
+
+    // 练习二：完成一个倒计时的案例
+    const h2El = document.createElement('h2')
+    h2El.style.color = 'red'
+    const endDate = new Date()
+    endDate.setHours(24)
+    endDate.setMinutes(0)
+    endDate.setSeconds(0)
+    endDate.setMilliseconds(0)
+
+    setInterval(() => {
+      const nowDate = new Date()
+      const differDate = Math.floor((endDate.getTime() - nowDate.getTime()) / 1000)
+      const hour = padLeft(Math.floor(differDate / 3600))
+      const min = padLeft(Math.floor((differDate / 60) % 60))
+      const sec = padLeft(differDate % 60)
+      h2El.textContent = `${hour}:${min}:${sec}`
+    }, 1000);
+    document.body.append(h2El)
+
+  </script>
+</body>
+
+</html>

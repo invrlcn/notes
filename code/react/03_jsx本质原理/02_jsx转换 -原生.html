@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> -->
+
+  <div id="root"></div>
+
+  <script>
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          msg: 'hello, react'
+        }
+      }
+      render() {
+        const { msg } = this.state
+        const element =   /*#__PURE__*/React.createElement("div", {
+          children: [/*#__PURE__*/React.createElement("div", {
+            class: "header title='hahaha'",
+            children: "header"
+          }), /*#__PURE__*/React.createElement("div", {
+            class: "content",
+            children: [/*#__PURE__*/React.createElement("div", {
+              class: "left",
+              children: "left"
+            }), /*#__PURE__*/React.createElement("div", {
+              class: "center",
+              children: "center"
+            }), /*#__PURE__*/React.createElement("div", {
+              class: "right",
+              children: "right"
+            })]
+          }), /*#__PURE__*/React.createElement("div", {
+            class: "footer",
+            children: "footer"
+          })]
+        })
+        return element
+      }
+    }
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(React.createElement(App))
+  </script>
+</body>
+
+</html>

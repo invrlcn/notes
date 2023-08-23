@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const p1 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('p1成功')
+      }, 2000);
+    })
+
+    const p2 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // resolve('p2成功')
+        reject('p2失败')
+      }, 3000);
+    })
+
+    const p3 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('p3成功')
+      }, 5000);
+    })
+
+    // Promise.all() :接收可迭代的参数,当所有的执行都返回resolve时,返回一个数组, 如果有一个reject,则返回这个reject的catch捕获
+
+    Promise.all([p1, p2, p3]).then(res => {
+      console.log('res:', res)
+    }).catch(err => {
+      console.log('err:', err)
+    })
+
+
+    // Promise.all('abc').then(res => {
+    //   console.log(res)
+    // })
+  </script>
+</body>
+
+</html>

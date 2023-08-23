@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="box">哈哈哈</div>
+
+  <script>
+    // 所有的节点、元素都继承自EventTarget
+    // EventTarget是一个DOM接口，主要用于添加、删除、派发Event事件
+
+    const boxEl = document.querySelector('.box')
+    //添加
+    const addFn = function () {
+      console.log('box被点击')
+      boxEl.dispatchEvent(new Event('invrlcn'))
+    }
+    boxEl.addEventListener('click', addFn)
+
+    // 移除
+    setTimeout(() => {
+      boxEl.removeEventListener('click', addFn)
+    }, 5000);
+
+    // 派发
+    // window.dispatchEvent(new Event('invrlcn'))
+    boxEl.addEventListener('invrlcn', function (event) {
+      console.log('监听到invrlcn事件触发')
+      console.log(event.type)
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const obj = {
+      name: 'bob',
+      age: 18
+    }
+    const info = {
+      name: 'tom',
+      age: 20
+    }
+
+    //道格拉斯·克罗克福德提出(原型式)
+    function createObject(o) {
+      function F() { }
+      F.prototype = o
+      return new F()
+    }
+
+    //道格拉斯·克罗克福德提出(寄生式)
+    function createInfo(o, name, age) {
+      const newObj = createObject(obj)
+      newObj.name = name
+      newObj.age = age
+      return newObj
+    }
+    const c1 = createInfo(info, 'marry', 40)
+    console.log(c1)
+
+
+
+  </script>
+</body>
+
+</html>

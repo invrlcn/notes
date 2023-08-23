@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .box {
+    margin: 20px auto;
+    width: 200px;
+    height: 200px;
+    background-color: orange;
+  }
+
+  .contain {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+  }
+
+  .btn {
+    width: 50px;
+    height: 20px;
+    background-color: green;
+  }
+</style>
+
+<body>
+  <div class="box">box
+    <div class="contain">
+      container
+      <div class="btn">btn</div>
+    </div>
+  </div>
+  <script>
+    const boxEl = document.querySelector('.box')
+    const containerEl = document.querySelector('.contain')
+    const btnEl = document.querySelector('.btn')
+
+    // 默认冒泡(从里到外)
+    btnEl.addEventListener('click', function () {
+      console.log('点击了btn, 冒泡')
+    })
+    containerEl.addEventListener('click', function () {
+      console.log('点击了contain, 冒泡')
+    })
+    boxEl.addEventListener('click', function () {
+      console.log('点击了box, 冒泡')
+    })
+
+    // 捕获(从外到里)
+    btnEl.addEventListener('click', function () {
+      console.log('点击了btn, 捕获')
+    }, true)
+    containerEl.addEventListener('click', function () {
+      console.log('点击了contain, 捕获')
+    }, true)
+    boxEl.addEventListener('click', function () {
+      console.log('点击了box, 捕获')
+    }, true)
+
+    // 同时设置,先捕获后冒泡
+  </script>
+</body>
+
+</html>

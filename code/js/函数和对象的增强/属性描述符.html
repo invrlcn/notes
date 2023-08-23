@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const obj = {
+      name: 'bob',
+      age: 18,
+      height: 1.88
+    }
+    // 数据属性描述符(configurable, enumerable, writable)
+    // Object.defineProperty(obj, 'name', {
+    //   configurable: false,
+    //   enumerable: false,
+    //   writable: false,
+    //   value: 'tom'
+    // })
+
+    // delete obj.name
+    // console.log(obj)
+    // Object.defineProperty(obj, 'name', {
+    //   configurable: true
+    // })
+
+    // for (let i in obj) {
+    //   console.log(i)
+    // }
+
+    // obj.name = 'tom'
+    // console.log(obj.name)
+
+    // 存取属性描述符(configurable, enumerable, set, get)
+    let _age = 0
+    Object.defineProperty(obj, 'age', {
+      configurable: true,
+      enumerable: true,
+      get() {
+        return _age
+      },
+      set(value) {
+        _age = value
+      }
+    })
+    // obj.age = 30
+    // console.log(obj.age)
+
+    // 同时定义多个属性
+    Object.defineProperties(obj, {
+      name: {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        value: 'marry'
+      },
+      age: {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        value: 20
+      }
+    })
+    // console.log(obj)
+
+    // 对象方法补充
+
+    // 1. 获取对象的属性描述符
+    // const res = Object.getOwnPropertyDescriptor(obj, 'name')
+    // console.log(res)
+    // const res = Object.getOwnPropertyDescriptors(obj)
+    // console.log(res)
+
+    // 2. 禁止对象扩展新属性
+
+    // Object.preventExtensions(obj)
+    // obj.address = '杭州市'
+    // console.log(obj)
+
+    // 3. 密封对象，不允许配置和删除属性(类似于configurable)
+    // Object.seal(obj)
+    // delete obj
+    // console.log(obj)
+
+    // 4. 冻结对象，不允许修改现有属性(类似于writable)
+    // Object.freeze(obj)
+    // obj.name = 'invr'
+    // console.log(obj)
+  </script>
+</body>
+
+</html>

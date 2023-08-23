@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // Array
+    const arr = ['aa', 'bb', 'cc']
+    const arrIterator = arr[Symbol.iterator]()
+    // console.log(arrIterator.next())
+    // console.log(arrIterator.next())
+    // console.log(arrIterator.next())
+    // console.log(arrIterator.next())
+
+    // String
+    // const str  = 'abc'
+    // const strIterator = str[Symbol.iterator]()
+    // console.log(strIterator.next())
+    // console.log(strIterator.next())
+    // console.log(strIterator.next())
+    // console.log(strIterator.next())
+
+    // Set/Map
+    // const set = new Set()
+    // set.add('a')
+    // set.add('b')
+    // set.add('c')
+    // const setIterator = set[Symbol.iterator]()
+    // console.log(setIterator.next())
+    // console.log(setIterator.next())
+    // console.log(setIterator.next())
+    // console.log(setIterator.next())
+
+    // arguments
+    function foo() {
+      const argIterator = arguments[Symbol.iterator]()
+      console.log(argIterator.next())
+      console.log(argIterator.next())
+      console.log(argIterator.next())
+      console.log(argIterator.next())
+    }
+    foo('a', 'b', 'c')
+  </script>
+</body>
+
+</html>

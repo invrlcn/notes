@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //  const Student = class {
+
+    // }
+    // const s = new Student()
+
+    class Person {
+      constructor(name, age) {
+        this.name = name
+        this.age = age
+      }
+      running() {
+        console.log(this.name + 'running')
+      }
+      eating() {
+        console.log(this.name + 'eating')
+      }
+    }
+    const p = new Person('bob', 18)
+    console.log(p)
+    p.running()
+    p.eating()
+    // console.log(p.__proto__ === Person.prototype)  // true
+    // console.log(p.__proto__.constructor === Person)  // true
+
+    /**
+     *  和函数声明类的不同点:
+     * function Foo() {}
+     * const f = new Foo()
+     * Foo()
+     * 函数既可以使用new调用,也可以当成普通的函数调用
+     * class声明的类不可以当成普通函数调用,只能使用new关键字调用
+     * **/
+
+
+  </script>
+</body>
+
+</html>

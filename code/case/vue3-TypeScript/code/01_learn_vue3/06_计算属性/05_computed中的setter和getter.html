@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <template id="lcn">
+    <h2>{{msg}}</h2>
+    <h2>{{fullName}}</h2>
+    <button @click="btnClick">修改</button>
+  </template>
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.createApp({
+      template: "#lcn",
+      data() {
+        return {
+          msg: "Hello, World",
+          firstName: 'abc',
+          lastName: 'xyz'
+        }
+      },
+      computed: {
+        // finallyMsg() {
+        //   return this.msg
+        // },
+        fullName: {
+          get(value) {
+            return this.firstName + ' ' + this.lastName
+            console.log('value:', value)
+          },
+          set(newValue) {
+            console.log(newValue)
+            const names = newValue.split(' ')
+            this.firstName = names[0]
+            this.lastName = names[1]
+          } 
+        }
+      },
+      methods: {
+        btnClick() {
+          this.msg = 'Invr, Lcn'
+          this.fullName = 'kkk, ddd'
+        }
+      }
+    }).mount("#app")
+  </script>
+</body>
+</html>

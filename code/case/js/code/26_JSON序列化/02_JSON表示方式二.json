@@ -1,0 +1,9 @@
+{
+  "name": "bob",
+  "age": 18,
+  "friends": {
+    "name": "mary",
+    "age": 20
+  },
+  "hobbies": [ "篮球", "电影" ]
+}

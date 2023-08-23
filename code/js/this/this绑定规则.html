@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <button class="btn1">按钮1</button>
+  <button class="btn2">按钮2</button>
+
+  <script>
+    // 默认绑定
+    // function foo() {
+    //   console.log('foo执行', this, arguments)
+    // }
+    // foo()  // window
+
+    // 隐式绑定
+    // const obj = {
+    //   name: 'bob',
+    //   foo
+    // }
+    // obj.foo() // obj
+
+    // 显示绑定
+    // foo.call('aaa', 'bbb', 'ccc')
+    // foo.apply('aaa', ['bbb', 'ccc'])
+    // const bar = foo.bind('aaa')
+    // bar()
+
+    // new绑定
+    // function Bar(name) {
+    //   console.log('bar执行', this, name)
+    // }
+    // const b = new Bar({ name: 'aaa' })
+    // console.log(b)
+
+    // 内置函数绑定
+
+    // setTimeout()  // window
+    // setTimeout(function () {
+    //   console.log('setTimeout', this)
+    // }, 1000);
+
+    // forEach()  // 默认window(可以改变)
+    // const arrs = ['aa', 'bb', 'cc']
+    // arrs.forEach(function (item) {
+    //   console.log(item, this)
+    // }, 'ddd')
+
+    // 点击事件  // 谁点击绑定谁
+    const btn1 = document.querySelector('.btn1')
+    const btn2 = document.querySelector('.btn2')
+
+    btn1.addEventListener('click', function () {
+      console.log('btn1点击', this)
+    })
+    btn2.addEventListener('click', function () {
+      console.log('btn2点击', this)
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const obj = {
+      name: 'bob',
+      age: 18,
+      height: 1.88,
+      address: '杭州市'
+    }
+
+    const proxy = new Proxy(obj, {
+      set(target, key, newValue, receiver) {
+        console.log('set捕获', newValue)
+        target[key] = newValue
+        console.log(receiver === proxy)
+      },
+      get(target, key, receiver) {
+        console.log('get捕获', key)
+        return target[key]
+      },
+      has(target, key) {
+        console.log('has捕获', key)
+        return key in target
+      },
+      deleteProperty(target, key) {
+        console.log('deleteProperty捕获')
+        return target[key]
+      }
+    })
+    console.log(proxy)
+    proxy.name = 'tom'
+    proxy.age
+    'height' in proxy
+    delete proxy.address
+  </script>
+</body>
+
+</html>

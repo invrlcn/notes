@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    // 1. 使用显示绑定绑定null/undefined时,this指向window,因为null/undefined没有原始包装类
+    function foo() {
+      console.log(this)
+    }
+    // foo.call(null)  // window
+    // foo.apply(undefined)   // window
+
+    // 2. 间接函数引用
+    const obj = {
+      name: 'bob',
+      foo
+    }
+    const info = {
+      name: 'tom'
+    };
+    (info.foo = obj.foo)()  // window
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Person(name, age, height) {
+      this.name = name
+      this.age = age
+      this.height = height
+    }
+    Person.prototype.running = function () {
+      console.log('running')
+    }
+    Person.prototype.eating = function () {
+      console.log('eating')
+    }
+
+    /**
+     * 组合借用继承的问题:
+     * 1. 无论在什么下,至少会调用两次父类构造函数
+     * 2. 每一个子类都会有两份父类的属性
+     * **/
+    function Student(name, age, height, score) {
+      // 借用构造函数
+      // Person.apply(this, [name, age, height])
+      Person.call(this, name, age, height)
+      this.score = score
+    }
+    // 原型链继承父类方法(缺点:属性无法继承,Person无法传参)
+    // Student.prototype = Person.prototype   // 不行,多个子类会相互影响,并且影响父类
+    const p = new Person()
+    Student.prototype = p
+
+    Student.prototype.studying = function () {
+      console.log('studying')
+    }
+
+    const p1 = new Person('bob', 20, 1.88)
+    // console.log(p1)
+    // p1.running()
+    // p1.eating()
+
+    const s1 = new Student('tom', 18, 1.68, 88)
+    const s2 = new Student('mary', 20, 1.78, 99)
+    console.log(s1)
+    console.log(s2)
+    // console.log(s1.__proto__.constructor.name)
+    s1.running()
+    s1.eating()
+    s1.studying()
+
+
+
+  </script>
+</body>
+
+</html>

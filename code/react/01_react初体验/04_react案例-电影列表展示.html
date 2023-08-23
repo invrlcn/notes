@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          movies: ['大话西游', '星际穿越', '教父', '功夫']
+        }
+      }
+
+      // 渲染函数
+      render() {
+        // 2. for循环
+        // const lis = []
+        // for (let i = 0; i < this.state.movies.length; i++) {
+        //   const movie = this.state.movies[i]
+        //   const liEl = <li>{movie}</li>
+        //   lis.push(liEl)
+        // }
+        return (
+          <div>
+            <ul>
+              {/*1. 直接展示*/}
+              {/*
+                <li>{this.state.movies[0]}</li>
+                <li>{this.state.movies[1]}</li>
+                <li>{this.state.movies[2]}</li>
+                <li>{this.state.movies[3]}</li>
+              */}
+
+              {/*2. for循环展示*/}
+              {/*{lis}*/}
+
+              {/*3. map()*/}
+              {this.state.movies.map(movie => <li key={movie}>{movie}</li>)}
+            </ul>
+          </div>
+        )
+      }
+    }
+
+    const root = ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<App />)
+  </script>
+
+
+</body>
+
+</html>

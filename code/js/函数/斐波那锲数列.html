@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 斐波那锲: 1 1 2 3 5 8 13 21 34 -->
+  <script>
+    // 需求:实现第n个位置的斐波那锲数
+
+    // 1. 递归实现
+    // function fibonacci(n) {
+    //   if (n === 1 || n === 2) return 1
+    //   return fibonacci(n - 1) + fibonacci(n - 2)
+    // }
+    // const f = fibonacci(3)
+    // console.log(f)
+
+    // 2. for循环
+    function fibonacci(n) {
+      if (n === 1 || n === 2) return 1
+      let n1 = 1
+      let n2 = 1
+      let total = 0
+      for (let i = 3; i <= n; i++) {
+        total = n1 + n2
+        n1 = n2
+        n2 = total
+      }
+      return total
+    }
+    const f = fibonacci(9)
+    console.log(f)
+  </script>
+</body>
+
+</html>

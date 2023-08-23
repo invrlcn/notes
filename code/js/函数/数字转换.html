@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function unitConversion (num) {
+      if (num > 100_000_000) {
+        num = num / 100_000_000 + '亿'
+      } else if (num > 10_000_000) {
+        num = num / 10_000 + '千万'
+      } else if (num > 10_000) {
+        num = num / 10_000 + '万'
+      }
+      console.log(num)
+    }
+    unitConversion(30922)
+    unitConversion(21309232)
+    unitConversion(4232342342922)
+  </script>
+</body>
+
+</html>

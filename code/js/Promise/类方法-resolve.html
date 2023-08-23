@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // const promise = Promise.resolve('成功')
+
+    // 等价于下面这种写法
+
+    // const promise = new Promise((resolve, reject) => {
+    //   resolve('成功')
+    // })
+
+    // 1. 普通值
+    // const promise = Promise.resolve('aa')
+
+    // 2. 传入一个新的Promise,由新的Promise决定
+    // const promise = Promise.resolve(new Promise((resolve, reject) => {
+    //   resolve('bb')
+    //   // reject('bb')
+    // }))
+
+    // 3. 传入对象,实现了thenable方法
+    const promise = Promise.resolve({
+      then(resolve, reject) {
+        resolve('cc')
+        // reject('cc')
+      }
+    })
+
+
+    promise.then(res => {
+      console.log('res:', res)
+    }).catch(err => {
+      console.log('err:', err)
+    })
+  </script>
+</body>
+
+</html>
