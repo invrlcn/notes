@@ -1,0 +1,14 @@
+{
+  "name": "redux-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "redux": "^4.2.1"
+  }
+}
