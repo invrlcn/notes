@@ -275,3 +275,196 @@
 
     
 
+![](../imgs/react/useRef.png)
+
+
+
+## 九. **useImperativeHandle**
+
+- **先来回顾一下ref和forwardRef结合使用：**
+
+  - 通过forwardRef可以将ref转发到子组件
+  - 子组件拿到父组件中创建的ref，绑定到自己的某一个元素中
+
+- **forwardRef的做法本身没有什么问题，但是我们是将子组件的DOM直接暴露给了父组件：**
+
+  - 直接暴露给父组件带来的问题是某些情况的不可控
+  - 父组件可以拿到DOM后进行任意的操作
+  - 我们只是希望父组件可以操作的focus，其他并不希望它随意操作
+
+- **通过useImperativeHandle可以值暴露固定的操作：**
+
+  - 通过useImperativeHandle的Hook，将传入的ref和useImperativeHandle第二个参数返回的对象绑定到了一起
+
+  - 在父组件中，使用 inputRef.current时，实际上使用的是返回的对象
+
+  - ```js
+    useImperativeHandle(ref, createHandle, dependencies?)
+    ```
+
+    - `ref`：该 `ref` 是你从 [`forwardRef` 渲染函数](https://zh-hans.react.dev/reference/react/forwardRef#render-function) 中获得的第二个参数
+    - `createHandle`：该函数无需参数，它返回你想要暴露的 ref 的句柄。该句柄可以包含任何类型。通常，你会返回一个包含你想暴露的方法的对象
+    - **可选的** `dependencies`：函数 `createHandle` 代码中所用到的所有反应式的值的列表。反应式的值包含 props、状态和其他所有直接在你组件体内声明的变量和函数
+
+![](../imgs/react/useImperactiveHandle.png)
+
+
+
+
+
+## 十. **useLayoutEffect**
+
+- **useLayoutEffect看起来和useEffect非常的相似，事实上他们也只有一点区别而已：**
+
+  - useEffect会在渲染的内容更新到DOM上后执行，不会阻塞DOM的更新
+  - useLayoutEffect会在渲染的内容更新到DOM上之前执行，会阻塞DOM的更新
+
+- **`useLayoutEffect` 是 [`useEffect`](https://zh-hans.react.dev/reference/react/useEffect) 的一个版本，在浏览器重新绘制屏幕之前触发**
+
+  - ```js
+    useLayoutEffect(setup, dependencies?)
+    ```
+
+    - `setup`：处理副作用的函数。setup 函数选择性返回一个*清理*（cleanup）函数。在将组件首次添加到 DOM 之前，React 将运行 setup 函数
+    - **可选** `dependencies`：`setup` 代码中引用的所有响应式值的列表。响应式值包括 props、state 以及所有直接在组件内部声明的变量和函数
+
+- **如果我们希望在某些操作发生之后再更新DOM，那么应该将这个操作放到useLayoutEffect**
+
+- **注意:**
+
+  - `useLayoutEffect` 可能会影响性能。尽可能使用 [`useEffect`](https://zh-hans.react.dev/reference/react/useEffect)
+
+
+
+![](../imgs/react/useLayoutEffect%E6%89%A7%E8%A1%8C.png)
+
+![](../imgs/react/useLayoutEffect.png)
+
+
+
+## 十一. **自定义Hook**
+
+- **自定义Hook本质上只是一种函数代码逻辑的抽取，严格意义上来说，它本身并不算React的特性**
+- **Hook 的名称必须永远以 `use` 开头** 
+  - **React 组件名称必须以大写字母开头**，比如 `StatusBar` 和 `SaveButton`。React 组件还需要返回一些 React 能够显示的内容，比如一段 JSX
+  - **Hook 的名称必须以后跟一个大写字母的 `use` 开头**，像 [`useState`](https://zh-hans.react.dev/reference/react/useState)（内置） 或者 `useOnlineStatus`（像本文早前的自定义 Hook）。Hook 可以返回任意值
+
+- **需求一：打印生命周期**
+
+![](../imgs/react/%E6%89%93%E5%8D%B0%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png)
+
+- **需求二：Context的共享**
+
+![](../imgs/react/%E6%95%B0%E6%8D%AE%E5%85%B1%E4%BA%ABcontext.png)
+
+- **需求三：获取滚动位置**
+
+![](../imgs/react/useScrollPosition.png)
+
+
+
+## 十二. **redux hooks**
+
+- **在之前的redux开发中，为了让组件和redux结合起来，我们使用了react-redux中的connect：**
+  - 但是这种方式必须使用高阶函数结合返回的高阶组件
+  - 并且必须编写：mapStateToProps和 mapDispatchToProps映射的函数
+- **在Redux7.1开始，提供了Hook的方式，我们再也不需要编写connect以及对应的映射函数了**
+- **useSelector的作用是将state映射到组件中：**
+  - 参数一：将state映射到需要的数据中
+  - 参数二：可以进行比较来决定是否组件重新渲染
+- **useSelector**默认会比较我们返回的两个对象是否相等**
+  - 如何比较呢？ const refEquality = (a, b) => a === b
+  - 也就是我们必须返回两个完全相等的对象才可以不引起重新渲染
+- **useDispatch就是直接获取dispatch函数，之后在组件中直接使用即可**
+- **我们还可以通过useStore来获取当前的store对象**
+
+![](../imgs/react/redux%E4%B8%AD%E7%9A%84hooks(1).png)
+
+![](../imgs/react/redux%E4%B8%AD%E7%9A%84hooks(2).png)
+
+
+
+## 十三. **useId**
+
+- **官方的解释：useId 是一个用于生成横跨服务端和客户端的稳定的唯一 ID 的同时避免 hydration 不匹配的 hook**
+
+
+
+### 13.1 SSR
+
+- **这里有一个词叫hydration，要想理解这个词，我们需要理解一些服务器端渲染（SSR）的概念**
+- **什么是SSR？**
+  - SSR（**Server Side Rendering，服务端渲染**），指的是页面在服务器端已经生成了完成的HTML页面结构，不需要浏览器解析
+  - 对应的是CSR（**Client Side Rendering，客户端渲染**），我们开发的SPA页面通常依赖的就是客户端渲染
+
+![](../imgs/react/ssr.png)
+
+- **早期的服务端渲染包括PHP、JSP、ASP等方式，但是在目前前后端分离的开发模式下，前端开发人员不太可能再去学习PHP、JSP等技术来开发网页**
+- **不过我们可以借助于Node来帮助我们执行JavaScript代码，提前完成页面的渲染**
+
+
+
+### 13.2 **SSR同构应用**
+
+- **什么是同构？**
+  -  一套代码既可以在服务端运行又可以在客户端运行，这就是同构应用
+- **同构是一种SSR的形态，是现代SSR的一种表现形式**
+  - 当用户发出请求时，先在服务器通过SSR渲染出首页的内容
+  - 但是对应的代码同样可以在客户端被执行
+  - 执行的目的包括事件绑定等以及其他页面切换时也可以在客户端被渲染
+
+![](../imgs/react/ssr%E5%90%8C%E6%9E%84.png)
+
+
+
+### 13.3 **Hydration**
+
+- **什么是Hydration？这里引入vite-plugin-ssr插件的官方解释**
+
+![](../imgs/react/hydration.png)
+
+- **在进行** **SSR** **时，我们的页面会呈现为** **HTML**
+  - 但仅 HTML 不足以使页面具有交互性。例如，浏览器端 JavaScript 为零的页面不能是交互式的（没有 JavaScript 事件处理程序来响应用户操作，例如单击按钮）
+  - 为了使我们的页面具有交互性，除了在 Node.js 中将页面呈现为 HTML 之外，我们的 UI 框架（Vue/React/...）还在浏览器中加载和呈现页面。（它创建页面的内部表示，然后将内部表示映射到我们在 Node.js 中呈现的 HTML 的 DOM 元素。）
+- **这个过程称为hydration**
+
+
+
+### 13.4 **useId的作用**
+
+- **useId 是一个用于生成横跨服务端和客户端的稳定的唯一 ID 的同时避免 hydration 不匹配的 hook**
+- **所以我们可以得出如下结论：**
+  - useId是用于react的同构应用开发的，前端的SPA页面并不需要使用它
+  - useId可以保证应用程序在客户端和服务器端生成唯一的ID，这样可以有效的避免通过一些手段生成的id不一致，造成hydration mismatch
+
+![](../imgs/react/useId.png)
+
+
+
+## 十四. **useTransition**
+
+- **官方解释：返回一个状态值表示过渡任务的等待状态，以及一个启动该过渡任务的函数**
+
+- **`useTransition` 是一个让你在不阻塞 UI 的情况下来更新状态的 React Hook**
+
+  - ```js
+    const [isPending, startTransition] = useTransition()
+    ```
+
+    - `useTransition` 不需要任何参数
+    - `useTransition` 返回一个由两个元素组成的数组：
+      - `isPending` 标志，告诉你是否存在待处理的转换
+      - [`startTransition` 函数](https://zh-hans.react.dev/reference/react/useTransition#starttransition) 允许你将状态更新标记为转换状态
+
+- **它其实在告诉react对于某部分任务的更新优先级较低，可以稍后进行更新**
+
+![](../imgs/react/useTransition.png)
+
+
+
+## 十五. **useDeferredValue**
+
+- **官方解释：useDeferredValue 接受一个值，并返回该值的新副本，该副本将推迟到更紧急地更新之后**
+- **在明白了useTransition之后，我们就会发现useDeferredValue的作用是一样的效果，可以让我们的更新延迟**
+
+![](../imgs/react/useDeferredValue.png)
